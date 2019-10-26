@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/main/webapp/WEB-INF/views/logIn_View.jsp=UTF-8
+=======
+encoding//src/main/webapp/WEB-INF/views/home2.jsp=UTF-8
+>>>>>>> branch 'master' of https://github.com/Jeredk/HGRmanitto.git
