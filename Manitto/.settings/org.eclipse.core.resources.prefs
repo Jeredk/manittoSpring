@@ -3,3 +3,4 @@
 >>>>>>>=branch 'master' of https\://github.com/Jeredk/HGRmanitto.git
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/logIn_View.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/signUp_View.jsp=UTF-8
