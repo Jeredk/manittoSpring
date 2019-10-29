@@ -54,7 +54,7 @@
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
 
 		<property name="url"
-			value="jdbc:log4jdbc:mysql://localhost:3306/manitto" />
+			value="jdbc:log4jdbc:mysql://localhost:3306/realmanitto" />
 	</bean>
 	
 	<!-- SqlSessionFactionBean -->

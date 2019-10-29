@@ -10,12 +10,11 @@
 	<P>힌트를 알려주세요.</P>
 
 	<form>
-
-		색깔<input type="text" name="favoriteColor" /> </br>
-		음식<input type="text" name="favoriteFood" /> </br>
-		가수<input type="text" name="favoriteSinger" /></br>
-		영화장르<input type="text" name="favoriteMovieGenre" /> </br>
-		인스타그램 <input type="text" name="instagramAccount" /> </br>
+		색깔 : <input type="text" placeholder="(*)좋아하는 색을 입력해주세요" /> </br>
+		음식 : <input type="text" placeholder="좋아하는 음식을 입력해주세요" /> </br>
+		가수 : <input type="text" placeholder="좋아하는 가수를 입력해주세요" /></br>
+		영화장르 : <input type="text" placeholder="좋아하는 영화 장르를 입력해주세요" /> </br>
+		인스타그램  : <input type="text" placeholder="인스타그램 아이디를 입력해주세요" /> </br>
 		<input type="submit" value="완료" />
 	</form>
 </body>
