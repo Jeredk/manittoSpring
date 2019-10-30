@@ -56,7 +56,7 @@ public class LogInController {
 		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
 		logger.debug(map.toString());
 		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
-		Object kakaoCodeAccount = map.get("kakaoCode");
+		Object kakaoCodeAccount = map.get("KAKAOCODE");
 		logger.debug(kakaoCodeAccount.toString());
 		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
 		
