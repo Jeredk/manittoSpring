@@ -53,10 +53,12 @@ public class LogInController {
 	@RequestMapping(value = "/signCheck", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> signUpPage2(@RequestBody Map<String, Object> map) {
-		System.out.println(map);
-		System.out.println("------------------------------------------");
+		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
+		logger.debug(map.toString());
+		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
 		Object kakaoCodeAccount = map.get("kakaoCode");
-		System.out.println(kakaoCodeAccount);
+		logger.debug(kakaoCodeAccount.toString());
+		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
 		
 		Map<String, Object> result = logInService.selectUser(map);
 		if(result != null) {
@@ -65,6 +67,17 @@ public class LogInController {
 			map.put("result", "needSignUp");
 		}
 		return map;		
+	}
+	
+	@RequestMapping(value="/signUpInspection", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> signUpInspection(@RequestBody Map<String, Object> map){
+		logger.debug("++++++++++++++++++++++++++++++++signUpInspection++++++++++++++++++++++++++++++++");
+		logger.debug(map.toString());
+		logger.debug("++++++++++++++++++++++++++++++++signUpInspection++++++++++++++++++++++++++++++++");
+		
+		return map;
+		
 	}
 }
 
