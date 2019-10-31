@@ -10,6 +10,7 @@ public class User {
 	private String INSTAGRAM;
 	private String EMAIL;
 	private int STATUS;
+	private String PROFILEIMG;
 	public String getKAKAOCODE() {
 		return KAKAOCODE;
 	}
@@ -64,11 +65,18 @@ public class User {
 	public void setSTATUS(int sTATUS) {
 		STATUS = sTATUS;
 	}
+	public String getPROFILEIMG() {
+		return PROFILEIMG;
+	}
+	public void setPROFILEIMG(String pROFILEIMG) {
+		PROFILEIMG = pROFILEIMG;
+	}
 	@Override
 	public String toString() {
 		return "User [KAKAOCODE=" + KAKAOCODE + ", NAME=" + NAME + ", COLOR=" + COLOR + ", FOOD=" + FOOD + ", SINGER="
 				+ SINGER + ", MOVIEGENRE=" + MOVIEGENRE + ", INSTAGRAM=" + INSTAGRAM + ", EMAIL=" + EMAIL + ", STATUS="
-				+ STATUS + "]";
+				+ STATUS + ", PROFILEIMG=" + PROFILEIMG + "]";
 	}
+	
 	
 }

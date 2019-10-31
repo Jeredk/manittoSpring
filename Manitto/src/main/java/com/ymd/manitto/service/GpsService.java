@@ -20,6 +20,8 @@ public class GpsService {
         dist = rad2deg(dist);
         dist = dist * 60 * 1.1515;        
         dist = dist * 1609.344; // 미터라 이렇게
+        dist = Math.round(dist);
+        System.out.println("dist = "+dist);
         
         if(dist <= 5000) {
         	return true;

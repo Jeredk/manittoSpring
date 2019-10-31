@@ -27,6 +27,7 @@ import com.ymd.manitto.utils.StringUtils;
 public class GpsController {
 	@Autowired
 	GpsService gpsSer;
+	@Autowired
 	StringUtils utils;
 	
 	List<Gps> gpsList = new ArrayList<Gps>();
@@ -77,6 +78,7 @@ public class GpsController {
 				gps.setLng(gpsList.get(i).getLng());				
 			}else {
 				boolean is5km = gpsSer.in5km(gps, g);
+				System.out.println(is5km);
 				if (is5km) {
 					userIn5km.add(utils.userSelectByKakao(g.getId()));
 				}
