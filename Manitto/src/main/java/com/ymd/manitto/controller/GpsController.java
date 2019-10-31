@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,15 +18,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ymd.manitto.Gps;
+import com.ymd.manitto.HomeController;
+import com.ymd.manitto.User;
 import com.ymd.manitto.service.GpsService;
+import com.ymd.manitto.utils.StringUtils;
 
 @Controller
 public class GpsController {
 	@Autowired
 	GpsService gpsSer;
+	StringUtils utils;
 	
 	List<Gps> gpsList = new ArrayList<Gps>();
-
+	private static final Logger logger = LoggerFactory.getLogger(GpsController.class);
 	@RequestMapping(value = "/realTimeGps", method = RequestMethod.POST)
 	@ResponseBody
 	public Gps getGps(
@@ -63,7 +69,7 @@ public class GpsController {
 		Gps gps = new Gps();
 		gps.setId(id);
 		
-		List<String> userIn5km = new ArrayList<String>();
+		List<User> userIn5km = new ArrayList<User>();
 		for (int i = 0; i < gpsList.size(); i++) {
 			Gps g = gpsList.get(i);
 			if (id.equals(g.getId())) {
@@ -72,12 +78,15 @@ public class GpsController {
 			}else {
 				boolean is5km = gpsSer.in5km(gps, g);
 				if (is5km) {
-					userIn5km.add(g.getId());
+					userIn5km.add(utils.userSelectByKakao(g.getId()));
 				}
 			}
 			
 			
 		}
+		
+		
+		
 		
 		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("result", userIn5km);
