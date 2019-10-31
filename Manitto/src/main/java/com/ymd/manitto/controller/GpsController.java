@@ -25,8 +25,7 @@ import com.ymd.manitto.utils.StringUtils;
 
 @Controller
 public class GpsController {
-	@Autowired
-	GpsService gpsSer;
+
 	@Autowired
 	StringUtils utils;
 	
@@ -64,18 +63,27 @@ public class GpsController {
 	@RequestMapping(value = "/nearUser", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> nearUser(@RequestBody Map<String, Object> map, Locale locale, Model model) {
+		GpsService gpsSer = new GpsService();
 		String id = String.valueOf(map.get("id"));
 		System.out.println(id);
 		
 		Gps gps = new Gps();
 		gps.setId(id);
+		for (int i = 0; i < gpsList.size(); i++) {
+			Gps g = gpsList.get(i);
+		if (id.equals(g.getId())) {
+			gps.setLat(gpsList.get(i).getLat());
+			gps.setLng(gpsList.get(i).getLng());				
+		}
+		}
+		
+		logger.debug(gps.toString());
 		
 		List<User> userIn5km = new ArrayList<User>();
 		for (int i = 0; i < gpsList.size(); i++) {
 			Gps g = gpsList.get(i);
 			if (id.equals(g.getId())) {
-				gps.setLat(gpsList.get(i).getLat());
-				gps.setLng(gpsList.get(i).getLng());				
+							
 			}else {
 				boolean is5km = gpsSer.in5km(gps, g);
 				System.out.println(is5km);

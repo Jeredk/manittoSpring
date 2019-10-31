@@ -12,8 +12,13 @@ public class GpsService {
 		double lng1 = gps1.getLng();
 		double lat2 = gps2.getLat();
 		double lng2 =gps2.getLng();
+		double theta=0.0;
+		if(lng1>lng2) {
+			theta = lng1 - lng2;
+		}else {
+			theta = lng2 - lng1;
+		}
 		
-		double theta = lng1 - lng2;
         double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
         
         dist = Math.acos(dist);
@@ -23,7 +28,7 @@ public class GpsService {
         dist = Math.round(dist);
         System.out.println("dist = "+dist);
         
-        if(dist <= 5000) {
+        if(dist <= 5000.0) {
         	return true;
         }else {
         	return false;		
