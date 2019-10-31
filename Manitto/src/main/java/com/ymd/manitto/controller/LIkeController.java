@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +22,15 @@ import com.ymd.manitto.Gps;
 import com.ymd.manitto.HomeController;
 import com.ymd.manitto.User;
 import com.ymd.manitto.service.GpsService;
+import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
 @Controller
 public class LIkeController {
 
+	@Autowired
+	likeService likeser;
+	
 	@Autowired
 	StringUtils utils;
 	
@@ -34,10 +39,11 @@ public class LIkeController {
 	
 	@RequestMapping(value = "/likeYou", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> likeYou(@RequestBody Map<String, String> map){
-		logger.debug(map.get("TARGET"));
-		logger.debug(map.get("STALKER"));
-		
+	public Map<String, Object> likeYou(@RequestBody Map<String, Object> map){
+		logger.debug(String.valueOf(map.get("TARGET")));
+		logger.debug(String.valueOf(map.get("STALKER")));
+		int result = likeser.likeyou(map);
+		map.put("result", result);
 		
 		return map;
 	}

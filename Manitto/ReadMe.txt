@@ -9,3 +9,9 @@ ERD 메세지함 테이블에 삭제 정보
 회원 탈퇴 시에서 7~8번 적용
 
 DB에 있는 member테이블에 status 기본값 0으로 설정
+
+Status in DB
+0 -> normal
+1 -> happy
+2 -> sad
+3 -> upset 

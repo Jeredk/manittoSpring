@@ -10,6 +10,12 @@
 		 WHERE KAKAOCODE = #{value}
 	</select>
 	
+	<insert id="likeyou" parameterType="map" >
+		insert into likeme (target,stalker,checkdate)
+		values(#{TARGET}, #{STALKER}, NOW())
+				 
+	</insert>
+	
 	
 
 </mapper>
