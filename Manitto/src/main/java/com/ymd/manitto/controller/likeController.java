@@ -26,7 +26,7 @@ import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
 @Controller
-public class LIkeController {
+public class likeController {
 
 	@Autowired
 	likeService likeser;
@@ -35,7 +35,7 @@ public class LIkeController {
 	StringUtils utils;
 	
 
-	private static final Logger logger = LoggerFactory.getLogger(LIkeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(likeController.class);
 	
 	@RequestMapping(value = "/likeYou", method = RequestMethod.POST)
 	@ResponseBody
