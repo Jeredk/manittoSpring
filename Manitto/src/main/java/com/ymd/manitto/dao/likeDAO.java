@@ -1,5 +1,6 @@
 package com.ymd.manitto.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,6 +18,9 @@ import org.springframework.stereotype.Repository;
 			return ss.insert("UserMapper.likeyou", map);
 		}
 		
+		public List<Map<String, Object>> loveSight(String id){
+			return ss.selectList("UserMapper.loveSight", id);
+		}
 		
 		
 	}

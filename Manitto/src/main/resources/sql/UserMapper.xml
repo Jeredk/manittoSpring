@@ -16,6 +16,13 @@
 				 
 	</insert>
 	
+	<select id="loveSight" parameterType="string" resultType="map">
+	select target,checkdate
+	from likeme
+	where stalker = #{value}
+	
+	</select>
+	
 	
 
 </mapper>

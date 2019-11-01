@@ -1,6 +1,9 @@
 package com.ymd.manitto.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import com.ymd.manitto.User;
 import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
@@ -45,6 +49,23 @@ public class likeController {
 		return map;
 	}
 	
+	@RequestMapping(value = "/loveSight", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> loveSight(@RequestBody Map<String, Object> map){
+		String id = String.valueOf(map.get("id"));
+		List<Map<String, Object>> list = likeser.loveSight(id);
+		List<User> userList = new ArrayList<User>();
+		Map<String, Object> json = new HashMap<String, Object>();
+		for (int i = 0; i < list.size(); i++) {
+			String targetId=(String) list.get(i).get("target");
+			User user = utils.userSelectByKakao(targetId);
+			
+			userList.add(user);			
+		}
+		json.put("loveList",userList);
+		
+		return map;
+	}
 	
 	
 

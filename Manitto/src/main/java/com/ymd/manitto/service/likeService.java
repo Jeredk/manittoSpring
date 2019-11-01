@@ -1,5 +1,6 @@
 package com.ymd.manitto.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class likeService {
 		result = likeD.likeyou(map);
 		return result;
 
+	}
+	
+	
+	public List<Map<String, Object>> loveSight(String id){
+		return likeD.loveSight(id);
 	}
 
 	
