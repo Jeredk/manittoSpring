@@ -76,7 +76,6 @@ public class LogInController {
 		logger.debug(map.toString());
 		logger.debug("++++++++++++++++++++++++++++++++signUpInspection++++++++++++++++++++++++++++++++");
 		
-		
 		logInService.signUpUser(map);
 		
 		

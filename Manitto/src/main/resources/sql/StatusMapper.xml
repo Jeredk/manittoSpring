@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StatusMapper">
+
+	<select id="statusSelect" resultType="Map" parameterType="Map">
+		SELECT `status` FROM `member` WHERE KAKAOCODE=#{KAKAOCODE}
+	</select>
+
+
+	<update id="statusUpdate" parameterType="Map">
+		UPDATE `MEMBER` SET
+			STATUS = #{STATUS}
+			WHERE KAKAOCODE = #{KAKAOCODE}
+	</update>
+
+
+</mapper>
