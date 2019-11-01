@@ -49,7 +49,7 @@ public class likeController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/loveSight", method = RequestMethod.POST)
+	@RequestMapping(value = "/lovesight", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> loveSight(@RequestBody Map<String, Object> map){
 		String id = String.valueOf(map.get("id"));
@@ -60,13 +60,24 @@ public class likeController {
 			String targetId=(String) list.get(i).get("target");
 			User user = utils.userSelectByKakao(targetId);
 			
-			userList.add(user);			
+			userList.add(user);	
+			logger.debug("-------------------------loveSight----------------------------");
+			logger.debug(user.getNAME());
+			logger.debug("-------------------------loveSight----------------------------");
 		}
 		json.put("loveList",userList);
 		
-		return map;
+		return json;
 	}
 	
+//	@RequestMapping(value="/findMyFriends",method = RequestMethod.POST)
+//	@ResponseBody
+//	public Map<String, Object> findMyFriends(@RequestBody Map<String,Object> map){
+//		List<Map<String,Object>> list = likeser.findMyFriends(map);
+//		return map;
+//		
+//	}
+//	
 	
 
 }

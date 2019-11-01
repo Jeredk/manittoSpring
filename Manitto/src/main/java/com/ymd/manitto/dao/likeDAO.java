@@ -22,6 +22,10 @@ import org.springframework.stereotype.Repository;
 			return ss.selectList("UserMapper.loveSight", id);
 		}
 		
+		public List<Map<String,Object>> findMyFriends(Map<String,Object> map){
+			return ss.selectList("UserMapper.findMyFriends", map);
+		}
+		
 		
 	}
 

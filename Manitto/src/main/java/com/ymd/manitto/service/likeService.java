@@ -26,6 +26,10 @@ public class likeService {
 	public List<Map<String, Object>> loveSight(String id){
 		return likeD.loveSight(id);
 	}
+	
+	public List<Map<String,Object>> findMyFriends(Map<String,Object> map){
+		return likeD.findMyFriends(map);
+	}
 
 	
 }
