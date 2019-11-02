@@ -21,11 +21,15 @@ import com.ymd.manitto.Gps;
 import com.ymd.manitto.HomeController;
 import com.ymd.manitto.User;
 import com.ymd.manitto.service.GpsService;
+import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
 @Controller
 public class GpsController {
 
+	@Autowired
+	likeService likeser;
+	
 	@Autowired
 	StringUtils utils;
 	
@@ -101,6 +105,55 @@ public class GpsController {
 		returnMap.put("result", userIn5km);
 		return returnMap;			
 	}
+	
+	@RequestMapping(value = "/totalCount", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> totalCount(@RequestBody Map<String, Object> map){
+		String id = String.valueOf(map.get("id"));
+		int count = likeser.LikeMeCount(id);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("count",count);
+		System.out.println("==================");
+		System.out.println("나를 좋아하는 사람"+count);
+		System.out.println("==================");
+		List<String>list=likeser.LikeMeCountIn5km(id);
+		GpsService gpsSer = new GpsService();
+		int in5kmCount = 0;
+		Gps gps1 = new Gps();
+		for (int i = 0; i < gpsList.size(); i++) {
+			if (gpsList.get(i).getId().equals(id)) {				
+				gps1.setId(id);
+				gps1.setLat(gpsList.get(i).getLat());
+				gps1.setLng(gpsList.get(i).getLng());
+			}
+			for (int j = 0; j < list.size(); j++) {
+				String likeUser = list.get(j);
+				if(gpsList.get(i).getId().equals(likeUser)) {
+					Gps gps2 = gpsList.get(i);
+					System.out.println("++++++++++++++");
+					System.out.println(gps1.getId()); 
+					System.out.println(gps2.getId()); 
+					System.out.println("++++++++++++++");
+					if (gps1.getId().equals(gps2.getId())) {
+						if (gpsSer.in5km(gps1, gps2)) {
+							in5kmCount++;
+						}
+					}
+					
+					
+				}
+			}
+			
+		}
+		
+		result.put("in5km",in5kmCount);
+		System.out.println("==================");
+		System.out.println("in5km"+count);
+		System.out.println("==================");
+		
+		return result;
+	}
+	
 	
 	
 	

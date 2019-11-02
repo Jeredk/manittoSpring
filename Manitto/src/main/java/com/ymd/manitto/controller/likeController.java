@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.ymd.manitto.User;
+import com.ymd.manitto.service.GpsService;
 import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
@@ -28,6 +29,9 @@ public class likeController {
 	
 	@Autowired
 	StringUtils utils;
+	
+	@Autowired
+	GpsService gpsSer;
 	
 
 	private static final Logger logger = LoggerFactory.getLogger(likeController.class);
@@ -81,20 +85,6 @@ public class likeController {
 		return map;
 	}
 
-	@RequestMapping(value = "/totalCount", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> totalCount(@RequestBody Map<String, Object> map){
-		String id = String.valueOf(map.get("id"));
-		int count = likeser.LikeMeCount(id);
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("count",count);
-		System.out.println("==================");
-		System.out.println("珥� 移쒓뎄 �닽�옄�뒗"+count);
-		System.out.println("==================");
-
-		
-		return result;
-	}
 	
 	
 	

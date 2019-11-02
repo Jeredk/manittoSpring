@@ -39,6 +39,11 @@ public class likeService {
 		return likeD.likeMeCount(id);
 
 	}
+	
+	public List<String> LikeMeCountIn5km(String id) {
+		return likeD.likeMeCountIn5km(id);
+	}
+
 
 	
 }
