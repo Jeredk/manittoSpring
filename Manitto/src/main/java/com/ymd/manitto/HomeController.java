@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.print.attribute.standard.Media;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.omg.CORBA.NameValuePair;
@@ -57,14 +58,12 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/joinTest", method = {RequestMethod.GET,RequestMethod.POST}
 	)
-	public @ResponseBody Result home (@RequestBody User user) {
+	public @ResponseBody Result home (@RequestBody User user, HttpSession session) {
 		logger.debug("++++++++++++++++++++++++++++++++++++++++++++++");
 		logger.debug(user.toString());
-		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userId",user.getName());
-		map.put("userPw",user.getGender());
-		map.put("userName",user.getTel());
+		session.setAttribute("name", "aa");
+	;
 		ses.join(map);
 		
 		

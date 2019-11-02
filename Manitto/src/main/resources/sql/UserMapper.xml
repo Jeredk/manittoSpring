@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+
+
+	<select id="userSelectByKakao" parameterType="string" resultType="com.ymd.manitto.User">
+		SELECT KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG
+		 FROM MEMBER
+		 WHERE KAKAOCODE = #{value}
+	</select>
+	
+	<insert id="likeyou" parameterType="map" >
+		insert into likeme (target,stalker,checkdate)
+		values(#{TARGET}, #{STALKER}, NOW())
+				 
+	</insert>
+	
+	<select id="loveSight" parameterType="string" resultType="map">
+	select target,checkdate
+	from likeme
+	where stalker = #{value}
+	</select>
+	
+	<select id="findMyFriends" parameterType="map" resultType="map">
+		select KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG
+		 from MEMBER
+		  WHERE KAKAOCODE = (select TARGET from `likeme` where STALKER = #{KAKAOCODE})
+	</select>
+	
+	
+
+</mapper>

@@ -27,7 +27,7 @@ public class LogInController {
 	@Autowired
 	LogInService logInService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(LogInController.class);
 
 	@RequestMapping(value = "/logIn", method = RequestMethod.GET)
 	public ModelAndView firstPage(HttpServletRequest req,HttpSession httpSession,ModelAndView mav) {		
@@ -52,11 +52,13 @@ public class LogInController {
 
 	@RequestMapping(value = "/signCheck", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> signUpPage2(@RequestBody Map<String, Object> map) {
-		System.out.println(map);
-		System.out.println("------------------------------------------");
-		Object kakaoCodeAccount = map.get("kakaoCode");
-		System.out.println(kakaoCodeAccount);
+	public Map<String, Object> signUpPage2(@RequestBody Map<String, Object> map,HttpServletRequest req) {
+		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
+		logger.debug(map.toString());
+		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
+		Object kakaoCodeAccount = map.get("KAKAOCODE");
+		logger.debug(kakaoCodeAccount.toString());
+		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
 		
 		Map<String, Object> result = logInService.selectUser(map);
 		if(result != null) {
@@ -65,6 +67,20 @@ public class LogInController {
 			map.put("result", "needSignUp");
 		}
 		return map;		
+	}
+	
+	@RequestMapping(value="/signUpInspection", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> signUpInspection(@RequestBody Map<String, Object> map){
+		logger.debug("++++++++++++++++++++++++++++++++signUpInspection++++++++++++++++++++++++++++++++");
+		logger.debug(map.toString());
+		logger.debug("++++++++++++++++++++++++++++++++signUpInspection++++++++++++++++++++++++++++++++");
+		
+		logInService.signUpUser(map);
+		
+		
+		return map;
+		
 	}
 }
 
