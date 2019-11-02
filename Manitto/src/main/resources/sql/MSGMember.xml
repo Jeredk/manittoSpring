@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+
+	<insert id="msg" parameterType="map" >
+		insert into `message`( CONTENT, RECEIVER, SENDER) 
+		VALUES (#{CONTENT},#{RECEIVER} ,#{SENDER});
+	</insert>
+	
+<!-- 	<select id="selectMsg" parameterType="string" resultType="map"> -->
+<!-- 		select * from `message` where id = #{value} order by msgno desc -->
+<!-- 	</select> -->
+	
+	<update id="msgCheck" parameterType="string">
+		UPDATE `message` SET
+			`check` = 1
+			WHERE id = #{value}
+	</update>
+	
+<!-- 	<select id="msgCount" parameterType="string" resultType="_int"> -->
+<!-- 		select count(*) from `message` where id = #{value} and `check` = 0 -->
+<!-- 	</select> -->
+	
+	
+</mapper>

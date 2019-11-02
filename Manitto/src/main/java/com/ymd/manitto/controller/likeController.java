@@ -69,7 +69,7 @@ public class likeController {
 		
 		return json;
 	}
-	
+
 	@RequestMapping(value="/lovecancelling", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> loveCancelling(@RequestBody Map<String, Object> map){
@@ -80,6 +80,23 @@ public class likeController {
 		likeser.loveCancelling(map);
 		return map;
 	}
+
+	@RequestMapping(value = "/totalCount", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> totalCount(@RequestBody Map<String, Object> map){
+		String id = String.valueOf(map.get("id"));
+		int count = likeser.LikeMeCount(id);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("count",count);
+		System.out.println("==================");
+		System.out.println("珥� 移쒓뎄 �닽�옄�뒗"+count);
+		System.out.println("==================");
+
+		
+		return result;
+	}
+	
+	
 	
 //	@RequestMapping(value="/findMyFriends",method = RequestMethod.POST)
 //	@ResponseBody

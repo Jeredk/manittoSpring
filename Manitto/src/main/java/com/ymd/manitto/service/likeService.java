@@ -31,8 +31,13 @@ public class likeService {
 		return likeD.findMyFriends(map);
 	}
 	
+
 	public void loveCancelling(Map<String, Object> map) {
 		likeD.loveCancelling(map);
+
+	public int LikeMeCount(String id) {
+		return likeD.likeMeCount(id);
+
 	}
 
 	

@@ -33,8 +33,7 @@ public class GpsController {
 	private static final Logger logger = LoggerFactory.getLogger(GpsController.class);
 	@RequestMapping(value = "/realTimeGps", method = RequestMethod.POST)
 	@ResponseBody
-	public Gps getGps(
-			@RequestBody Gps gps) {
+	public Gps getGps(@RequestBody Gps gps) {
 				System.out.println(gps.getId());
 				System.out.println(gps.getLat());
 				System.out.println(gps.getLng());

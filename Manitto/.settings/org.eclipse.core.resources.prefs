@@ -2,6 +2,8 @@
 <<<<<<<=HEAD
 >>>>>>>=branch 'master' of https\://github.com/Jeredk/HGRmanitto.git
 eclipse.preferences.version=1
+encoding//src/main/java/com/ymd/manitto/controller/MSGController.java=UTF-8
+encoding//src/main/java/com/ymd/manitto/controller/likeController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/logIn_View.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/signUp_View.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/userIn5km.jsp=UTF-8
