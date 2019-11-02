@@ -27,8 +27,9 @@ import org.springframework.stereotype.Repository;
 		}
 
 		public void loveCancelling(Map<String, Object> map) {
-			ss.delete("UserMapper.noMoreManitto", map);
-
+			ss.delete("UserMapper.noMoreManitto", map)
+			;
+		}
 		public int likeMeCount(String id) {
 			List<String> list = ss.selectList("UserMapper.totalLikeMe",id);
 			int count = list.size();

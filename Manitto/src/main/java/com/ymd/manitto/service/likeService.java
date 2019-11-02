@@ -33,7 +33,7 @@ public class likeService {
 	
 
 	public void loveCancelling(Map<String, Object> map) {
-		likeD.loveCancelling(map);
+		likeD.loveCancelling(map);}
 
 	public int LikeMeCount(String id) {
 		return likeD.likeMeCount(id);
