@@ -28,6 +28,10 @@
 		  WHERE KAKAOCODE = (select TARGET from `likeme` where STALKER = #{KAKAOCODE})
 	</select>
 	
+	<delete id="noMoreManitto" parameterType="map">
+		DELETE FROM `likeme' WHERE TARGET=#{TARGET} AND STALKER=#{STALKER}
+	</delete>
+	
 	
 
 </mapper>

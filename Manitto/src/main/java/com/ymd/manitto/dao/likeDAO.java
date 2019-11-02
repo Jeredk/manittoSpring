@@ -26,6 +26,10 @@ import org.springframework.stereotype.Repository;
 			return ss.selectList("UserMapper.findMyFriends", map);
 		}
 		
+		public void loveCancelling(Map<String, Object> map) {
+			ss.delete("UserMapper.noMoreManitto", map);
+		}
+		
 		
 	}
 

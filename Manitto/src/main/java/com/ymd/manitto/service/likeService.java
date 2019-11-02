@@ -30,6 +30,10 @@ public class likeService {
 	public List<Map<String,Object>> findMyFriends(Map<String,Object> map){
 		return likeD.findMyFriends(map);
 	}
+	
+	public void loveCancelling(Map<String, Object> map) {
+		likeD.loveCancelling(map);
+	}
 
 	
 }

@@ -70,6 +70,17 @@ public class likeController {
 		return json;
 	}
 	
+	@RequestMapping(value="/lovecancelling", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> loveCancelling(@RequestBody Map<String, Object> map){
+		logger.debug("-------------------------lovecancelling----------------------------");
+		logger.debug(String.valueOf(map.get("TARGET")));
+		logger.debug(String.valueOf(map.get("STALKER")));
+		logger.debug("-------------------------lovecancelling----------------------------");
+		likeser.loveCancelling(map);
+		return map;
+	}
+	
 //	@RequestMapping(value="/findMyFriends",method = RequestMethod.POST)
 //	@ResponseBody
 //	public Map<String, Object> findMyFriends(@RequestBody Map<String,Object> map){
