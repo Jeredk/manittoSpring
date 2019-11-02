@@ -70,6 +70,23 @@ public class likeController {
 		return json;
 	}
 	
+	@RequestMapping(value = "/totalCount", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> totalCount(@RequestBody Map<String, Object> map){
+		String id = String.valueOf(map.get("id"));
+		int count = likeser.LikeMeCount(id);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("count",count);
+		System.out.println("==================");
+		System.out.println("총 친구 숫자는"+count);
+		System.out.println("==================");
+
+		
+		return result;
+	}
+	
+	
+	
 //	@RequestMapping(value="/findMyFriends",method = RequestMethod.POST)
 //	@ResponseBody
 //	public Map<String, Object> findMyFriends(@RequestBody Map<String,Object> map){

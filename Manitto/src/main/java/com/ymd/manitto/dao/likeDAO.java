@@ -26,6 +26,13 @@ import org.springframework.stereotype.Repository;
 			return ss.selectList("UserMapper.findMyFriends", map);
 		}
 		
+		public int likeMeCount(String id) {
+			List<String> list = ss.selectList("UserMapper.totalLikeMe",id);
+			int count = list.size();
+			System.out.println("count = = = "+count);
+			return count;
+		}
+		
 		
 	}
 

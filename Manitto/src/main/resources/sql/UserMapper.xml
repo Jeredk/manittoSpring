@@ -28,6 +28,11 @@
 		  WHERE KAKAOCODE = (select TARGET from `likeme` where STALKER = #{KAKAOCODE})
 	</select>
 	
+	<select id="totalLikeMe" parameterType="string" resultType="string">
+	select stalker
+	from likeme
+	where target = #{value}
+	</select>
 	
 
 </mapper>
