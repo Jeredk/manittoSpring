@@ -30,9 +30,6 @@ public class likeController {
 	@Autowired
 	StringUtils utils;
 	
-	@Autowired
-	GpsService gpsSer;
-	
 
 	private static final Logger logger = LoggerFactory.getLogger(likeController.class);
 	
