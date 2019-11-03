@@ -50,6 +50,8 @@ public class likeController {
 		return map;
 	}
 	
+	
+	
 	@RequestMapping(value = "/lovesight", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> loveSight(@RequestBody Map<String, Object> map){

@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
   <!-- Include the jQuery library -->
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <!--
-   Include the jQuery Mobile library -->
+  <!-- Include the jQuery Mobile library -->
   <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 </head>
@@ -16,14 +15,13 @@
 <div >
 
 		<form method="post" action="SendMSG">
-			ë³´ë‚´ëŠ”ì‚¬ëžŒ:<input type="text" name="RECEIVER" value="${RECEIVER}"> 
-			ë°›ëŠ”ì‚¬ëžŒ:<input type="text" name="SENDER" value="${SENDER}"><br>
-			  
-			
+			<input type="hidden" name="id" value="${toUser}" readonly="readonly"> 
+			<input type="hidden" name="id2" value="${fromUser}"><br>  
+				<b>¹Þ´Â»ç¶÷:${toUser}</b><br>
 				
-			<b>ë‚´ìš©:<textarea name="CONTENT" class="form-control" rows="5"></textarea></b>
+			<textarea name="msgcontent" class="form-control" rows="5"></textarea>
 			
-			<input type="submit" value="ì „ì†¡" class="btn btn-success" style="float: right; margin-top: 5px">
+			<input type="submit" value="Àü¼Û" class="btn btn-success" style="float: right; margin-top: 5px">
 		</form>
 	</div>
 
@@ -38,7 +36,7 @@ $('input:submit').click(function() {
 		type: 'post',
 		data: $('form').serialize(),
 		success: function(res) {
-			alert('ìª½ì§€ ë°œì†¡ ì™„ë£Œ');
+			alert('ÂÊÁö ¹ß¼Û ¿Ï·á');
 			self.close();
 		}
 	})

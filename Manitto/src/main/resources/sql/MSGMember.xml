@@ -9,9 +9,9 @@
 		VALUES (#{CONTENT},#{RECEIVER} ,#{SENDER});
 	</insert>
 	
-<!-- 	<select id="selectMsg" parameterType="string" resultType="map"> -->
-<!-- 		select * from `message` where id = #{value} order by msgno desc -->
-<!-- 	</select> -->
+	<select id="selectMsg" parameterType="string" resultType="map">
+		select * from `message` where id = #{value} order by msgno desc
+	</select>
 	
 	<update id="msgCheck" parameterType="string">
 		UPDATE `message` SET

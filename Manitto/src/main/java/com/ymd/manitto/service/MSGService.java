@@ -32,10 +32,10 @@ public class MSGService {
 			dao.msg(map);
 		}
 	 
-//	 public List<Map<String, Object>> selectMsg(String id) {
-//		return dao.selectMsg(id);
-//	}
-//	 
+	 public List<Map<String, Object>> selectMsg(String id) {
+		return dao.selectMsg(id);
+	}
+	 
 	 public void checkMsg(String id) {
 			dao.checkMsg(id);
 		}
