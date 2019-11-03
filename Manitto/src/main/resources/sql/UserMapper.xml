@@ -30,7 +30,7 @@
 	
 
 	<delete id="noMoreManitto" parameterType="map">
-		DELETE FROM `likeme' WHERE TARGET=#{TARGET} AND STALKER=#{STALKER}
+		DELETE FROM likeme WHERE TARGET=#{TARGET} AND STALKER=#{STALKER}
 	</delete>
 	
 
