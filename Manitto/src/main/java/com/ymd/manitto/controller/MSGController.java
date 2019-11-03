@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,13 +57,19 @@ public class MSGController {
 	@RequestMapping(value = "/SendMSG", method = RequestMethod.GET)
 	public String msg(Model model, HttpServletRequest req, @RequestParam Map<String, Object> map) {
 		
-		String C =(String) map.get("C");
-		String R =(String) map.get("R");
-		String S =(String) map.get("S");
-	
+		
+		
+		
+		
+		
+//		String C =(String) map.get("C");
+//		String R =(String) map.get("R");
+//		String S =(String) map.get("S");
+		 
+	        
 		MS.msg(map);
 		
-		return "home";
+		return "SendMSG";
 
 	}
 
@@ -74,16 +81,16 @@ public class MSGController {
 
 	}
 
-//	@RequestMapping(value = "/msgList", method = RequestMethod.GET)
-//	public String msgSend(Model model, HttpSession session) {
-//		String id = (String) session.getAttribute("id");
-//		List<Map<String, Object>> msgList = MS.selectMsg(id);
-//		model.addAttribute("msgList", msgList);
-//		MS.checkMsg(id);
-//
-//		return "MSGList";
-//
-//	}
+	@RequestMapping(value = "/msgList", method = RequestMethod.GET)
+	public String msgSend(Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		List<Map<String, Object>> msgList = MS.selectMsg(id);
+		model.addAttribute("msgList", msgList);
+		MS.checkMsg(id);
+
+		return "MSGList";
+
+	}
 //
 //	@RequestMapping(value = "/msgCount", method = RequestMethod.GET)
 //	@ResponseBody

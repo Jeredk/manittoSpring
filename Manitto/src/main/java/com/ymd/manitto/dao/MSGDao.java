@@ -20,9 +20,9 @@ public class MSGDao {
 		ss.insert("member.msg",map);
 	}
 	
-//	public List<Map<String, Object>> selectMsg(String id) {
-//		return ss.selectList("member.selectMsg",id);
-//	}
+	public List<Map<String, Object>> selectMsg(String id) {
+		return ss.selectList("member.selectMsg",id);
+	}
 	public void checkMsg(String id) {
 		ss.update("member.msgCheck",id);
 	}
