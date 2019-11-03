@@ -6,11 +6,12 @@
 	<div >
 
 		<form method="post" action="SendMSG">
-			<input type="hidden" name="id" value="${toUser}" readonly="readonly"> 
-			<input type="hidden" name="id2" value="${fromUser}"><br>  
-				<b>받는사람:${toUser}</b><br>
+			보내는사람:<input type="text" name="RECEIVER" value="${RECEIVER}"> 
+			받는사람:<input type="text" name="SENDER" value="${SENDER}"><br>
+			  
+			
 				
-			<textarea name="msgcontent" class="form-control" rows="5"></textarea>
+			<b>내용:<textarea name="CONTENT" class="form-control" rows="5"></textarea></b>
 			
 			<input type="submit" value="전송" class="btn btn-success" style="float: right; margin-top: 5px">
 		</form>
