@@ -37,6 +37,11 @@ import org.springframework.stereotype.Repository;
 			return count;
 		}
 		
+		public List<String> likeMeCountIn5km(String id) {
+			List<String> list = ss.selectList("UserMapper.totalLikeMe",id);			
+			return list;
+		}
+		
 		
 	}
 

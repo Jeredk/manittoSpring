@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.ymd.manitto.User;
+import com.ymd.manitto.service.GpsService;
 import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
@@ -70,31 +71,17 @@ public class likeController {
 		return json;
 	}
 
-	@RequestMapping(value="/lovecancelling", method = RequestMethod.POST)
+	@RequestMapping(value="/lovecancel", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> loveCancelling(@RequestBody Map<String, Object> map){
 		logger.debug("-------------------------lovecancelling----------------------------");
-		logger.debug(String.valueOf(map.get("TARGET")));
-		logger.debug(String.valueOf(map.get("STALKER")));
+		logger.debug(map+"");
+		//logger.debug(String.valueOf(map.get("STALKER")));
 		logger.debug("-------------------------lovecancelling----------------------------");
 		likeser.loveCancelling(map);
 		return map;
 	}
 
-	@RequestMapping(value = "/totalCount", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> totalCount(@RequestBody Map<String, Object> map){
-		String id = String.valueOf(map.get("id"));
-		int count = likeser.LikeMeCount(id);
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("count",count);
-		System.out.println("==================");
-		System.out.println("珥� 移쒓뎄 �닽�옄�뒗"+count);
-		System.out.println("==================");
-
-		
-		return result;
-	}
 	
 	
 	
