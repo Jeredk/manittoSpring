@@ -25,6 +25,22 @@ import org.springframework.stereotype.Repository;
 		public List<Map<String,Object>> findMyFriends(Map<String,Object> map){
 			return ss.selectList("UserMapper.findMyFriends", map);
 		}
+
+		public void loveCancelling(Map<String, Object> map) {
+			ss.delete("UserMapper.noMoreManitto", map)
+			;
+		}
+		public int likeMeCount(String id) {
+			List<String> list = ss.selectList("UserMapper.totalLikeMe",id);
+			int count = list.size();
+			System.out.println("count = = = "+count);
+			return count;
+		}
+		
+		public List<String> likeMeCountIn5km(String id) {
+			List<String> list = ss.selectList("UserMapper.totalLikeMe",id);			
+			return list;
+		}
 		
 		
 	}

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.ymd.manitto.User;
+import com.ymd.manitto.service.GpsService;
 import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
@@ -71,6 +72,20 @@ public class likeController {
 		
 		return json;
 	}
+
+	@RequestMapping(value="/lovecancel", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> loveCancelling(@RequestBody Map<String, Object> map){
+		logger.debug("-------------------------lovecancelling----------------------------");
+		logger.debug(map+"");
+		//logger.debug(String.valueOf(map.get("STALKER")));
+		logger.debug("-------------------------lovecancelling----------------------------");
+		likeser.loveCancelling(map);
+		return map;
+	}
+
+	
+	
 	
 //	@RequestMapping(value="/findMyFriends",method = RequestMethod.POST)
 //	@ResponseBody
