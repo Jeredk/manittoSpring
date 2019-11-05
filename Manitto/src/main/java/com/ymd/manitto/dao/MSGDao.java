@@ -1,7 +1,6 @@
 package com.ymd.manitto.dao;
 
 import java.util.List;
-
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,16 +15,23 @@ public class MSGDao {
 	SqlSessionTemplate ss;
 	
 	
-	public void msg(Map<String, Object>map ) {
-		ss.insert("member.msg",map);
+	public void msg(Map<String, Object> map) {
+		ss.insert("message.msg",map);
+	}
+		
+	public List<Map<String,Object>> selectmsg(String SENDER){
+		return ss.selectList("message.msgList", SENDER);
 	}
 	
-	public List<Map<String, Object>> selectMsg(String id) {
-		return ss.selectList("member.selectMsg",id);
-	}
-	public void checkMsg(String id) {
-		ss.update("member.msgCheck",id);
-	}
+//	public List<Map<String,Object>> selectmsg(Map<String, Object>map){
+//		return ss.selectList("message.msgList", map);
+//	}
+	
+
+	
+//	public void checkMsg(String id) {
+//		ss.update("member.msgCheck",id);
+//	}?
 //	public int checkCount(String id) {
 //		return ss.selectOne("member.msgCount",id);
 //	}

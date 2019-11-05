@@ -3,7 +3,6 @@
 "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserMapper">
 
-
 	<select id="userSelectByKakao" parameterType="string" resultType="com.ymd.manitto.User">
 		SELECT KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG
 		 FROM MEMBER
@@ -16,6 +15,11 @@
 				 
 	</insert>
 	
+	<select id="searchMSG" parameterType="map">
+		select 
+		
+		
+	</select>
 	<select id="loveSight" parameterType="string" resultType="map">
 	select target,checkdate
 	from likeme

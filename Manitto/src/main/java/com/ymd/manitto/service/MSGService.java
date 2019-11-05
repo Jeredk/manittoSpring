@@ -18,9 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ymd.manitto.dao.MSGDao;
 
-
-
-
 @Service
 public class MSGService {
 	
@@ -32,13 +29,11 @@ public class MSGService {
 			dao.msg(map);
 		}
 	 
-	 public List<Map<String, Object>> selectMsg(String id) {
-		return dao.selectMsg(id);
+	 public List<Map<String, Object>> selectmsg(String SENDER) {
+		return dao.selectmsg(SENDER);
+		
 	}
 	 
-	 public void checkMsg(String id) {
-			dao.checkMsg(id);
-		}
 //	 public int checkCount(String id) {
 //			return dao.checkCount(id);
 //		}
