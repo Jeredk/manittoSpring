@@ -44,5 +44,11 @@
 	where target = #{value}
 	</select>
 	
+	<select id="selectUser" parameterType="map" resultType="map">
+		SELECT KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG
+		 FROM MEMBER
+		 WHERE KAKAOCODE= #{KAKAOCODE}
+	</select>
+	
 
 </mapper>

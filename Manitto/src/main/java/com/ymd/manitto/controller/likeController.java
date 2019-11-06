@@ -85,6 +85,19 @@ public class likeController {
 	}
 
 	
+	@RequestMapping(value="/afriend", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> findafriend(@RequestBody Map<String, Object> map){
+		logger.debug("-------------------------selectafriend----------------------------");
+		logger.debug(map+"");
+		logger.debug("-------------------------selectafriend----------------------------");
+		Map<String,Object> apersoninfo = likeser.findafriend(map);
+		logger.debug(apersoninfo+"");
+//		Map<String, Object> json = new HashMap<String, Object>();
+//		json.put("findafriend",apersoninfo);
+		return apersoninfo;
+	}
+	
 	
 	
 //	@RequestMapping(value="/findMyFriends",method = RequestMethod.POST)

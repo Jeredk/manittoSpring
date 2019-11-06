@@ -42,6 +42,10 @@ import org.springframework.stereotype.Repository;
 			return list;
 		}
 		
+		public Map<String, Object> findafriend(Map<String, Object> map){
+			return ss.selectOne("UserMapper.selectUser", map);
+		}
+		
 		
 	}
 

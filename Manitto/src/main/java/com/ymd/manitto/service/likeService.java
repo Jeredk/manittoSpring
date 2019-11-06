@@ -43,6 +43,10 @@ public class likeService {
 	public List<String> LikeMeCountIn5km(String id) {
 		return likeD.likeMeCountIn5km(id);
 	}
+	
+	public Map<String, Object> findafriend(Map<String, Object> map){
+		return likeD.findafriend(map);
+	}
 
 
 	
