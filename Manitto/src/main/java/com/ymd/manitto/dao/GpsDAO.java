@@ -29,6 +29,9 @@ import org.springframework.stereotype.Repository;
 		public List<Map<String, Object>> onlineUser() {
 			return ss.selectList("GpsMapper.onLineUser");
 		}
+		public void deleteUser(Map<String, Object> map) {
+			 ss.delete("GpsMapper.deleteUser",map);
+		}
 		
 		
 	}

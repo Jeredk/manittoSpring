@@ -132,11 +132,14 @@ public class GpsController {
 		List<Gps> likeMeGpsList = new ArrayList<Gps>();
 		for (int i = 0; i < likeMeList.size(); i++) {
 			Map<String, Object> lmap = gpsser.gpsDup(likeMeList.get(i));
-			Gps likeMeGps = new Gps();
-			likeMeGps.setId(String.valueOf(lmap.get("kakaocode")));
-			likeMeGps.setLat((double)(lmap.get("lat")));
-			likeMeGps.setLng((double)(lmap.get("lng")));
-			likeMeGpsList.add(likeMeGps);
+			if(lmap != null) {
+				
+				Gps likeMeGps = new Gps();
+				likeMeGps.setId(String.valueOf(lmap.get("stalker")));
+				likeMeGps.setLat((double)(lmap.get("lat")));
+				likeMeGps.setLng((double)(lmap.get("lng")));
+				likeMeGpsList.add(likeMeGps);
+			}
 
 		}		
 		
@@ -156,6 +159,15 @@ public class GpsController {
 		logger.debug("==================");
 
 		return result;
+	}
+	
+	@RequestMapping(value = "/deleteGps", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteGps(@RequestBody Map<String, Object> map) {
+		gpsser.deleteUser(map);
+		
+		logger.debug("접속종료 : " + map.get("id"));
+		return map;
 	}
 
 }

@@ -22,6 +22,10 @@
 		select kakaocode, lat, lng from gps			 
 	</select>
 	
+	<delete id="deleteUser" parameterType="map">
+		delete from gps where kakaocode = #{id}		 
+	</delete>
+	
 	
 
 </mapper>

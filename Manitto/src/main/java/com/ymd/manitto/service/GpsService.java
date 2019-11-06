@@ -68,6 +68,9 @@ public class GpsService {
     public List<Map<String, Object>> onlineUser() {
        	return dao.onlineUser();
     	}
+    public void deleteUser(Map<String, Object> map) {
+      	 dao.deleteUser(map);
+   	}
 
 
 
