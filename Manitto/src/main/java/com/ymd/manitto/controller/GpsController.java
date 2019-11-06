@@ -31,8 +31,9 @@ public class GpsController {
 
 	@Autowired
 	StringUtils utils;
-
-	List<Gps> gpsList = new ArrayList<Gps>();
+	
+	@Autowired
+	GpsService gpsser;
 	private static final Logger logger = LoggerFactory.getLogger(GpsController.class);
 
 	@RequestMapping(value = "/realTimeGps", method = RequestMethod.POST)
@@ -41,22 +42,19 @@ public class GpsController {
 		System.out.println(gps.getId());
 		System.out.println(gps.getLat());
 		System.out.println(gps.getLng());
-		boolean isDup = false;
-		for (int i = 0; i < gpsList.size(); i++) {
-			Gps g = gpsList.get(i);
-			if (g.getId().equals(gps.getId())) {
-				isDup = true;
-				g.setLat(gps.getLat());
-				g.setLng(gps.getLng());
-			}
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> gpsMap = new HashMap<String, Object>();
+		gpsMap.put("kakaocode",gps.getId());
+		gpsMap.put("lat",gps.getLat());
+		gpsMap.put("lng",gps.getLng());
+		map=gpsser.gpsDup(gps.getId());
+		if (map == null) {
+			gpsser.gpsInsert(gpsMap);
+		}else {
+			gpsser.gpsUpdate(gpsMap);
 		}
-		if (isDup) {
-
-		} else {
-			gpsList.add(gps);
-		}
-
-		System.out.println("총 접속자 = " + gpsList.size());
+		
+		System.out.println("총 접속자 = " + gpsser.onlineUser().size());
 
 		return gps;
 	}
@@ -64,17 +62,25 @@ public class GpsController {
 	@RequestMapping(value = "/nearUser", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> nearUser(@RequestBody Map<String, Object> map, Locale locale, Model model) {
-		GpsService gpsSer = new GpsService();
+		
 		String id = String.valueOf(map.get("id"));
 		System.out.println(id);
 
 		Gps gps = new Gps();
 		gps.setId(id);
-		for (int i = 0; i < gpsList.size(); i++) {
-			Gps g = gpsList.get(i);
-			if (id.equals(g.getId())) {
-				gps.setLat(gpsList.get(i).getLat());
-				gps.setLng(gpsList.get(i).getLng());
+		List<Map<String, Object>> userList = gpsser.onlineUser();
+		List<Gps> gpsList = new ArrayList<Gps>();
+		for (int i = 0; i < gpsser.onlineUser().size(); i++) {
+			Map<String, Object> user = userList.get(i);
+			if (id.equals(user.get("kakaocode"))) {
+				gps.setLat((double) user.get("lat"));
+				gps.setLng((double) user.get("lng"));
+			}else {
+				Gps gps2 = new Gps();
+				gps2.setId(String.valueOf(user.get("kakaocode")));
+				gps2.setLat((double) user.get("lat"));
+				gps2.setLng((double) user.get("lng"));
+				gpsList.add(gps2);
 			}
 		}
 
@@ -83,17 +89,13 @@ public class GpsController {
 		List<User> userIn5km = new ArrayList<User>();
 		for (int i = 0; i < gpsList.size(); i++) {
 			Gps g = gpsList.get(i);
-			if (id.equals(g.getId())) {
-
-			} else {
-				boolean is5km = gpsSer.in5km(gps, g);
+			
+				boolean is5km = gpsser.in5km(gps, g);
 				System.out.println(is5km);
 				if (is5km) {
 					userIn5km.add(utils.userSelectByKakao(g.getId()));
 				}
 			}
-
-		}
 
 		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("result", userIn5km);
@@ -112,56 +114,41 @@ public class GpsController {
 		System.out.println("나를 좋아하는 사람" + count);
 		System.out.println("==================");
 
-		List<String> list = likeser.LikeMeCountIn5km(id);
-		GpsService gpsSer = new GpsService();
+		List<String> likeMeList = likeser.LikeMeCountIn5km(id);
+		List<Map<String, Object>> userList = gpsser.onlineUser();
+
 		int in5kmCount = 0;
-		logger.debug("gpsList.size() : " + gpsList.size());
-		logger.debug("gpsList.size() : " + gpsList.toString());
-		Gps gps1 = new Gps();
-		for (int i = 0; i < gpsList.size(); i++) {
-			if (gpsList.get(i).getId().equals(id)) {
-				gps1.setId(id);
-				gps1.setLat(gpsList.get(i).getLat());
-				gps1.setLng(gpsList.get(i).getLng());
+		Gps gps = new Gps();
+		
+		List<Gps> gpsList = new ArrayList<Gps>();
+		for (int i = 0; i < userList.size(); i++) {
+			
+			Map<String, Object> user = userList.get(i);
+			if (id.equals(user.get("kakaocode"))) {
+				gps.setLat((double) user.get("lat"));
+				gps.setLng((double) user.get("lng"));
 			}
-			for (int j = 0; j < list.size(); j++) {
-				String likeUser = list.get(j);
-				if (gpsList.get(i).getId().equals(likeUser)) {
-					Gps gps2 = gpsList.get(i);
-					
-					gps2.setId(likeUser);
-					gps2.setLat(gpsList.get(i).getLat());
-					gps2.setLng(gpsList.get(i).getLng());
-					System.out.println("++++++++++++++");
-					System.out.println(gps1.getId());
-
-					System.out.println(gps2.getId());
-					System.out.println("++++++++++++++");
-					if(gps1==null) {
-						logger.debug("gps1 : " + gps1.toString());
-					}
-					if(gps2==null) {
-						logger.debug("gps2 : " + gps1.toString());
-					}
-					if(gps1!=null && gps2!=null) {
-						String userId1=gps1.getId();
-						String userId2=gps2.getId();
-						logger.debug("userId1 : " + userId1.toString());
-						logger.debug("userId2 : " + userId2.toString());
-						
-					if (!gps1.getId().equals(gps2.getId())) {
-						if (gpsSer.in5km(gps1, gps2)) {
-							logger.debug("gps1 : " + gps1.toString());
-							logger.debug("gps2 : " + gps2.toString());
-							in5kmCount++;
-						}
-					}
-					}
-
-				}
-			}
-
 		}
+		List<Gps> likeMeGpsList = new ArrayList<Gps>();
+		for (int i = 0; i < likeMeList.size(); i++) {
+			Map<String, Object> lmap = gpsser.gpsDup(likeMeList.get(i));
+			Gps likeMeGps = new Gps();
+			likeMeGps.setId(String.valueOf(lmap.get("kakaocode")));
+			likeMeGps.setLat((double)(lmap.get("lat")));
+			likeMeGps.setLng((double)(lmap.get("lng")));
+			likeMeGpsList.add(likeMeGps);
+
+		}		
+		
+		for (int i = 0; i < likeMeGpsList.size(); i++) {
+			boolean in5km = gpsser.in5km(gps, likeMeGpsList.get(i));
+			if(in5km) {
+				in5kmCount++;
+			}
+		}
+		
+		
+		
 
 		result.put("in5km", in5kmCount);
 		logger.debug("==================");

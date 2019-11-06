@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GpsMapper">
+
+	
+	
+	<insert id="gpsInsert" parameterType="map" >
+		insert into gps (kakaocode,lat,lng)
+		values(#{kakaocode}, #{lat}, #{lng})				 
+	</insert>
+	
+	<select id="gpsDup" parameterType="string" resultType="map">
+		select kakaocode, lat, lng from gps where kakaocode = #{value}				 
+	</select>
+	
+	<update id="gpsUpdate" parameterType="map" >
+		update gps set lat=#{lat}, lng=#{lng} where kakaocode = #{kakaocode}			 
+	</update>
+	
+	<select id="onLineUser" resultType="map">
+		select kakaocode, lat, lng from gps			 
+	</select>
+	
+	
+
+</mapper>

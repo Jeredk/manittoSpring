@@ -1,11 +1,19 @@
 package com.ymd.manitto.service;
 
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ymd.manitto.Gps;
+import com.ymd.manitto.dao.GpsDAO;
 
 @Service
 public class GpsService {
+	
+	@Autowired
+	GpsDAO dao;
 	
 	public boolean in5km(Gps gps1,Gps gps2) {
 		double lat1 = gps1.getLat();
@@ -45,6 +53,22 @@ public class GpsService {
     private static double rad2deg(double rad) {
         return (rad * 180 / Math.PI);
     }
+    
+    public void gpsInsert(Map<String, Object> map) {
+    	 dao.gpsInsert(map);
+	}
+    public Map<String, Object> gpsDup(String id) {
+   	return dao.gpsDup(id);
+	}
+
+    public void gpsUpdate(Map<String, Object> map) {
+   	 dao.gpsUpdate(map);
+	}
+    
+    public List<Map<String, Object>> onlineUser() {
+       	return dao.onlineUser();
+    	}
+
 
 
 }
