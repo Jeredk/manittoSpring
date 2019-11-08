@@ -29,7 +29,7 @@
 	<select id="findMyFriends" parameterType="map" resultType="map">
 		select KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG
 		 from MEMBER
-		  WHERE KAKAOCODE = (select TARGET from `likeme` where STALKER = #{KAKAOCODE})
+		  WHERE KAKAOCODE in (select TARGET from `likeme` where STALKER = #{KAKAOCODE})
 	</select>
 	
 
