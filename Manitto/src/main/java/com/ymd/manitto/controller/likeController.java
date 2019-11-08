@@ -6,14 +6,17 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +50,7 @@ public class likeController {
 	
 	@RequestMapping(value = "/likeyou", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> likeYou(@RequestBody Map<String, Object> map){
+	public Map<String, Object> likeYou(@RequestBody Map<String, Object> map) throws JSONException, UnsupportedEncodingException{
 		logger.debug(String.valueOf(map.get("TARGET")));
 		logger.debug(String.valueOf(map.get("STALKER")));
 		
@@ -58,7 +61,7 @@ public class likeController {
 		JSONObject reqData = new JSONObject();
 		reqData.put("priority", "high");
 		JSONObject contents = new JSONObject();
-		contents.put("contents", "누군가 당신을 좋아합니다");
+		contents.put("contents", URLEncoder.encode("누군가 당신을 좋아합니다", "utf-8"));
 		reqData.put("data", contents);
 		JSONArray ids = new JSONArray();
 		ids.put(targetFcm);
@@ -78,7 +81,7 @@ public class likeController {
 			out.flush();
 
 			InputStream is = con.getInputStream();
-			InputStreamReader isr = new InputStreamReader(is, "utf-8");
+			InputStreamReader isr = new InputStreamReader(is, "UTF-8");
 			BufferedReader reader = new BufferedReader(isr);
 			String separator = "";
 
