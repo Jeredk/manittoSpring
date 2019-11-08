@@ -4,7 +4,7 @@
 <mapper namespace="UserMapper">
 
 	<select id="userSelectByKakao" parameterType="string" resultType="com.ymd.manitto.User">
-		SELECT KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG
+		SELECT KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG,FCM
 		 FROM MEMBER
 		 WHERE KAKAOCODE = #{value}
 	</select>
@@ -48,6 +48,18 @@
 		SELECT KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG
 		 FROM MEMBER
 		 WHERE KAKAOCODE= #{KAKAOCODE}
+	</select>
+	
+	
+	
+	<update id="updateFcm" parameterType="map">
+	update member set FCM = #{Token} where KAKAOCODE = #{id}
+	</update>
+	
+	<select id="selectFcm" parameterType="map" resultType="map">
+		SELECT FCM
+		 FROM MEMBER
+		 WHERE KAKAOCODE= #{id}
 	</select>
 	
 

@@ -11,6 +11,7 @@ public class User {
 	private String EMAIL;
 	private int STATUS;
 	private String PROFILEIMG;
+	private String FCM;
 	public String getKAKAOCODE() {
 		return KAKAOCODE;
 	}
@@ -71,12 +72,19 @@ public class User {
 	public void setPROFILEIMG(String pROFILEIMG) {
 		PROFILEIMG = pROFILEIMG;
 	}
+	public String getFCM() {
+		return FCM;
+	}
+	public void setFCM(String fCM) {
+		FCM = fCM;
+	}
 	@Override
 	public String toString() {
 		return "User [KAKAOCODE=" + KAKAOCODE + ", NAME=" + NAME + ", COLOR=" + COLOR + ", FOOD=" + FOOD + ", SINGER="
 				+ SINGER + ", MOVIEGENRE=" + MOVIEGENRE + ", INSTAGRAM=" + INSTAGRAM + ", EMAIL=" + EMAIL + ", STATUS="
-				+ STATUS + ", PROFILEIMG=" + PROFILEIMG + "]";
+				+ STATUS + ", PROFILEIMG=" + PROFILEIMG + ", FCM=" + FCM + "]";
 	}
+	
 	
 	
 }

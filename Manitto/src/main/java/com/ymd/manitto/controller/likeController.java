@@ -1,11 +1,20 @@
 package com.ymd.manitto.controller;
 
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.ymd.manitto.User;
-import com.ymd.manitto.service.GpsService;
+import com.ymd.manitto.service.FcmService;
 import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
@@ -30,6 +39,9 @@ public class likeController {
 	@Autowired
 	StringUtils utils;
 	
+	@Autowired
+	FcmService fcmser;
+	
 
 	private static final Logger logger = LoggerFactory.getLogger(likeController.class);
 	
@@ -38,6 +50,51 @@ public class likeController {
 	public Map<String, Object> likeYou(@RequestBody Map<String, Object> map){
 		logger.debug(String.valueOf(map.get("TARGET")));
 		logger.debug(String.valueOf(map.get("STALKER")));
+		
+		Map<String, Object> fcm = new HashMap<String, Object>();
+		fcm.put("id", map.get("TARGET"));
+		String targetFcm = String.valueOf(fcmser.selectFcm(fcm).get("FCM"));
+		
+		JSONObject reqData = new JSONObject();
+		reqData.put("priority", "high");
+		JSONObject contents = new JSONObject();
+		contents.put("contents", "누군가 당신을 좋아합니다");
+		reqData.put("data", contents);
+		JSONArray ids = new JSONArray();
+		ids.put(targetFcm);
+		reqData.put("registration_ids", ids);
+
+		StringBuffer resultB = new StringBuffer();
+		try {
+			URL url = new URL("https://fcm.googleapis.com/fcm/send");
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("POST");
+			con.setDoOutput(true);
+			con.addRequestProperty("content-type", "application/json");
+			con.addRequestProperty("Authorization", "key=AAAAu2OqvsA:APA91bHUjnsBmjyxUYhtlWtxC4uE-YAiULhWB2lBxxFLB6mDlFwrPCHpjNqFN3RZYMI8g7Yc8Y8iOvF0XdwDGZYtu51ik1qe2D_ortyD1nsXlhh3idT4tbuvhokB3NPR-gSmhkQ8NDUt");
+			DataOutputStream out = new DataOutputStream(con.getOutputStream());
+			String param = reqData.toString();
+			out.writeBytes(param);
+			out.flush();
+
+			InputStream is = con.getInputStream();
+			InputStreamReader isr = new InputStreamReader(is, "utf-8");
+			BufferedReader reader = new BufferedReader(isr);
+			String separator = "";
+
+			while (true) {
+				String data = reader.readLine();
+				if (data == null) {
+					break;
+				}
+				resultB.append(separator + data);
+				separator = "\n";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		int result = 0;
 		try {
 			result = likeser.likeyou(map);			
