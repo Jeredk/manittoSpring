@@ -23,6 +23,10 @@ public class MSGDao {
 		return ss.selectList("message.msgList", SENDER);
 	}
 	
+	public int msgDelete(int NUMBER){
+		return ss.delete("message.msgDelete", NUMBER);
+	}
+	
 //	public List<Map<String,Object>> selectmsg(Map<String, Object>map){
 //		return ss.selectList("message.msgList", map);
 //	}

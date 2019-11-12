@@ -13,8 +13,8 @@
 	select * from `message`
 	</select> 
 	
-	<delete id="msgDelete" parameterType="map">
-	delete from `message` where SENDER = #{SENDER}
+	<delete id="msgDelete" parameterType="int">
+	delete from `message` where NUMBER = #{value}
 	</delete>
 	
 	
