@@ -7,10 +7,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,6 +72,20 @@ public class MSGController {
 		return msgList; 
 	}
 	
+	@RequestMapping(value = "/msgDelete", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteMsg(@RequestBody Map<String, Object> map) {
+		String number= (String) map.get("delNum");
+		String[] sp = number.split("/");
+		for (int i = 0; i < sp.length; i++) {
+			 int a = Integer.parseInt(sp[i]);
+			 MS.msgDelete(a);
+		}
+				
+		
+		
+		return map; 
+	} 
 
 
 

@@ -34,6 +34,9 @@ public class MSGService {
 		
 	}
 	 
+	 public int msgDelete(int NUMBER) {
+		 return dao.msgDelete(NUMBER);
+	 }
 //	 public int checkCount(String id) {
 //			return dao.checkCount(id);
 //		}
