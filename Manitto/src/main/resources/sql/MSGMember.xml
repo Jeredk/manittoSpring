@@ -4,18 +4,34 @@
 <mapper namespace="message">
 
 
-	<insert id="insertmsg" parameterType="map" >
+	<insert id="msgInsert" parameterType="map" >
 		insert into `message`( CONTENT, RECEIVER, SENDER) 
 		VALUES (#{CONTENT},#{RECEIVER} ,#{SENDER});
 	</insert>
 	
-	<select id="msgList" parameterType="string" resultType="map">
+	<select id="sendmsgList" parameterType="string" resultType="map">
 	select m.*, DATE_FORMAT(m.SENDDATE, '%Y-%m-%d %H:%i:%s') as SENDDATE2 from `message` m where m.sender = #{value}
 	</select> 
+	
+	
+	<select id="receivemsgList" parameterType="string" resultType="map">
+	select m.*, DATE_FORMAT(m.SENDDATE, '%Y-%m-%d %H:%i:%s') as SENDDATE2 from `message` m where m.receiver = #{value}
+	</select> 
+	
 	
 	<delete id="msgDelete" parameterType="map">
 	delete from `message` where NUMBER = #{NUMBER}
 	</delete>
+	
+	<update id="msgCheck" parameterType="string">
+	update message set checking	= 1 
+	where receiver = #{value} and checking = 0
+	</update>
+	
+	<select id="newmsgCount" parameterType="string" resultType="map">
+	select * from message 
+	where receiver = #{value} and checking = 0
+	</select>
 	
 	
 <!-- 	<select id="msgList" parameterType="map" resultType="map"> -->

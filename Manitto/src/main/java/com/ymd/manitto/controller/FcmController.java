@@ -19,6 +19,7 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 import com.ymd.manitto.User;
 import com.ymd.manitto.service.FcmService;
 import com.ymd.manitto.service.GpsService;
+import com.ymd.manitto.service.MSGService;
 import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
@@ -29,6 +30,8 @@ public class FcmController {
 	StringUtils utils;
 	@Autowired
 	FcmService ser;
+	@Autowired
+	MSGService msgser;
 	
 
 	private static final Logger logger = LoggerFactory.getLogger(FcmController.class);
@@ -41,7 +44,8 @@ public class FcmController {
 		
 		
 			ser.updateFcm(map);
-		
+			int msgCount=msgser.newmsgCount(String.valueOf(map.get("id")));
+			map.put("msgCount",msgCount);
 		
 		
 		return map;
