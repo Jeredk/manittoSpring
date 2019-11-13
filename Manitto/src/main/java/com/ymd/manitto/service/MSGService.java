@@ -34,10 +34,16 @@ public class MSGService {
 		
 	}
 	 
+<<<<<<< HEAD
 	 public void msgDelete(Map<String,Object> map) {
 		 dao.msgDelete(map);
 	 }
 	 
+=======
+	 public int msgDelete(int NUMBER) {
+		 return dao.msgDelete(NUMBER);
+	 }
+>>>>>>> branch 'master' of https://github.com/Jeredk/HGRmanitto.git
 //	 public int checkCount(String id) {
 //			return dao.checkCount(id);
 //		}

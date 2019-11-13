@@ -26,10 +26,6 @@ public class MSGDao {
 	public void msgDelete(Map<String,Object> map) {
 		ss.delete("message.msgDelete", map);
 	}
-	//	public List<Map<String,Object>> selectmsg(Map<String, Object>map){
-//		return ss.selectList("message.msgList", map);
-//	}
-	
 
 	
 //	public void checkMsg(String id) {

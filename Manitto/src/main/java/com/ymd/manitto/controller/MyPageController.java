@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ymd.manitto.service.MyPageService;
 import com.ymd.manitto.service.likeService;
 
 
@@ -19,6 +20,9 @@ public class MyPageController {
 	
 	@Autowired
 	likeService likeser;
+	
+	@Autowired
+	MyPageService myPageService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(likeController.class);
 	
@@ -33,8 +37,21 @@ public class MyPageController {
 		Map<String,Object> apersoninfo = likeser.findafriend(map);
 		logger.debug(apersoninfo+"");
 
-		return apersoninfo;
-
+		return apersoninfo;	
+	}
+	
+	@RequestMapping(value="renewinfo", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> renewmyinfo(@RequestBody Map<String, Object> map){
+		logger.debug("-------------------------renewmyinfo----------------------------");
+		logger.debug(map+"");
+		logger.debug("-------------------------renewmyinfo----------------------------");
+		myPageService.updatemyinfo(map);
+		
+		return map;
 		
 	}
+	
+	
+	
 }

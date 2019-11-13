@@ -96,6 +96,26 @@ public class GpsController {
 					userIn5km.add(utils.userSelectByKakao(g.getId()));
 				}
 			}
+		for (int i = userIn5km.size()-1; i >= 0 ; i--) {
+			User FrUser = userIn5km.get(i);
+			Map<String, Object> im = new HashMap<String, Object>();
+			im.put("KAKAOCODE",id);
+			List<Map<String, Object>> fr = likeser.findMyFriends(im);
+			String user5km = FrUser.getKAKAOCODE();
+			for (int j = 0; j < fr.size(); j++) {
+				if ( user5km.equals(String.valueOf(fr.get(j).get("KAKAOCODE")))) {
+				userIn5km.remove(i);
+				}
+				
+			}
+			
+				
+			}
+		
+		
+				
+		
+		
 
 		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("result", userIn5km);
