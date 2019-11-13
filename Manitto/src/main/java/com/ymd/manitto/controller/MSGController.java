@@ -70,7 +70,25 @@ public class MSGController {
 		
 		String SENDER = (Integer) map.get("id") + "";
 		
+		MS.msgCheck(SENDER);
+		
 		List<Map<String, Object>> msgList = MS.selectmsg(SENDER);
+		Map<String, List<Map<String, Object>>> returnMap = new HashMap<String, List<Map<String, Object>>>();
+		returnMap.put("list", msgList);
+		return returnMap; 
+	}
+	
+	@RequestMapping(value = "/msgList3", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, List<Map<String, Object>>> msgList3(
+			@RequestBody Map<String, Object> map) {
+		System.out.println(map);
+		
+		String RECEIVER = (Integer) map.get("id") + "";
+		
+		MS.msgCheck(RECEIVER);
+		
+		List<Map<String, Object>> msgList = MS.selectmsg2(RECEIVER);
 		Map<String, List<Map<String, Object>>> returnMap = new HashMap<String, List<Map<String, Object>>>();
 		returnMap.put("list", msgList);
 		return returnMap; 

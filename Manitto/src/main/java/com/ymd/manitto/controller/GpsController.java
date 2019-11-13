@@ -20,7 +20,11 @@ import com.ymd.manitto.Gps;
 import com.ymd.manitto.HomeController;
 import com.ymd.manitto.User;
 import com.ymd.manitto.service.GpsService;
+
 import com.ymd.manitto.service.StatusService;
+
+import com.ymd.manitto.service.MSGService;
+
 import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
@@ -32,6 +36,9 @@ public class GpsController {
 
 	@Autowired
 	StringUtils utils;
+	
+	@Autowired
+	MSGService msgser;
 	
 	@Autowired
 	GpsService gpsser;
@@ -195,6 +202,9 @@ public class GpsController {
 		logger.debug("==================");
 		logger.debug("in5km : " + in5kmCount);
 		logger.debug("==================");
+		
+		int msgCount = msgser.newmsgCount(id);
+		result.put("msgCount",msgCount);
 
 		
 		
