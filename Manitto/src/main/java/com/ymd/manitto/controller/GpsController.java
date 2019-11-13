@@ -20,6 +20,7 @@ import com.ymd.manitto.Gps;
 import com.ymd.manitto.HomeController;
 import com.ymd.manitto.User;
 import com.ymd.manitto.service.GpsService;
+import com.ymd.manitto.service.StatusService;
 import com.ymd.manitto.service.likeService;
 import com.ymd.manitto.utils.StringUtils;
 
@@ -34,6 +35,10 @@ public class GpsController {
 	
 	@Autowired
 	GpsService gpsser;
+	
+	@Autowired
+	StatusService statusService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(GpsController.class);
 
 	@RequestMapping(value = "/realTimeGps", method = RequestMethod.POST)
@@ -54,7 +59,7 @@ public class GpsController {
 			gpsser.gpsUpdate(gpsMap);
 		}
 		
-		System.out.println("총 접속자 = " + gpsser.onlineUser().size());
+		System.out.println("珥� �젒�냽�옄 = " + gpsser.onlineUser().size());
 
 		return gps;
 	}
@@ -127,11 +132,14 @@ public class GpsController {
 	@ResponseBody
 	public Map<String, Object> totalCount(@RequestBody Map<String, Object> map) {
 		String id = String.valueOf(map.get("id"));
+
 		int count = likeser.LikeMeCount(id);
+
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("count", count);
+
 		System.out.println("==================");
-		System.out.println("나를 좋아하는 사람" + count);
+		System.out.println("�굹瑜� 醫뗭븘�븯�뒗 �궗�엺" + count);
 		System.out.println("==================");
 
 		List<String> likeMeList = likeser.LikeMeCountIn5km(id);
@@ -170,6 +178,16 @@ public class GpsController {
 			}
 		}
 		
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		logger.debug("++++++++++++++++++++++++++++++++++++SelectMyStatusNumberIntoGPSController+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		logger.debug(map+"");
+		Map<String, Object> stats = statusService.statusSelect(map);
+		int stat = (int) stats.get("STATUS");
+		logger.debug(stat+"This is my Status");
+		logger.debug("++++++++++++++++++++++++++++++++++++SelectMyStatusNumberIntoGPSController+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		result.put("STATUS",stat);
+		
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		
 		
 
@@ -178,6 +196,8 @@ public class GpsController {
 		logger.debug("in5km : " + in5kmCount);
 		logger.debug("==================");
 
+		
+		
 		return result;
 	}
 	
@@ -186,7 +206,7 @@ public class GpsController {
 	public Map<String, Object> deleteGps(@RequestBody Map<String, Object> map) {
 		gpsser.deleteUser(map);
 		
-		logger.debug("접속종료 : " + map.get("id"));
+		logger.debug("�젒�냽醫낅즺 : " + map.get("id"));
 		return map;
 	}
 

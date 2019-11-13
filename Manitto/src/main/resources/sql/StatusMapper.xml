@@ -4,7 +4,7 @@
 <mapper namespace="StatusMapper">
 
 	<select id="statusSelect" resultType="Map" parameterType="Map">
-		SELECT `status` FROM `member` WHERE KAKAOCODE=#{KAKAOCODE}
+		SELECT `STATUS` FROM `MEMBER` WHERE KAKAOCODE=#{KAKAOCODE}
 	</select>
 
 
