@@ -34,6 +34,10 @@ public class MSGService {
 		
 	}
 	 
+	 public void msgDelete(Map<String,Object> map) {
+		 dao.msgDelete(map);
+	 }
+	 
 //	 public int checkCount(String id) {
 //			return dao.checkCount(id);
 //		}

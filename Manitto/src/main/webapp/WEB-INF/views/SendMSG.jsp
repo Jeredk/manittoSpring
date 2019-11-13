@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +19,12 @@
 <div >
 
 		<form method="post" action="SendMSG">
-			보내는사람:<input type="text" name="RECEIVER" value="${RECEIVER}"> 
-			받는사람:<input type="text" name="SENDER" value="${SENDER}"><br>
+			Receiver:<input type="text" name="RECEIVER" value="${RECEIVER}"> 
+			Sender:<input type="text" name="SENDER" value="${SENDER}"><br>
 			  
 			
 				
-			<b>내용:<textarea name="CONTENT" class="form-control" rows="5"></textarea></b>
+			<b>content:<textarea name="CONTENT" class="form-control" rows="5"></textarea></b>
 			
 			<input type="submit" value="전송" class="btn btn-success" style="float: right; margin-top: 5px">
 		</form>

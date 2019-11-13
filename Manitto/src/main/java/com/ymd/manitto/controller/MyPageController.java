@@ -27,9 +27,9 @@ public class MyPageController {
 	public Map<String, Object> checkmyinfo(@RequestBody Map<String, Object> map){
 		
 		logger.debug(map+"");
-		logger.debug("-------------------------selectafriend----------------------------");
+		logger.debug("-------------------------checkmyinfo----------------------------");
 		logger.debug(map+"");
-		logger.debug("-------------------------selectafriend----------------------------");
+		logger.debug("-------------------------checkmyinfo----------------------------");
 		Map<String,Object> apersoninfo = likeser.findafriend(map);
 		logger.debug(apersoninfo+"");
 

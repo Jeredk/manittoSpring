@@ -1,5 +1,6 @@
 package com.ymd.manitto.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,10 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,7 +43,7 @@ public class MSGController {
 
 	@RequestMapping(value = "/SendMSG", method = RequestMethod.POST)
 	public String msg2(@RequestParam Map<String, Object> map) {
-		ss.insert("member.msg", map);
+		ss.insert("message.insertmsg", map);
 		
 //		ss.selectList("message.msgList", SENDER);
 		
@@ -64,16 +62,32 @@ public class MSGController {
 		return "msgList";
 	}
 	
-	@RequestMapping(value = "/msgList2", method = RequestMethod.GET)
+	@RequestMapping(value = "/msgList2", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Map<String, Object>> msgList2(Model model) {
-		String SENDER = null;
+	public Map<String, List<Map<String, Object>>> msgList2(
+			@RequestBody Map<String, Object> map) {
+		System.out.println(map);
+		
+		String SENDER = (Integer) map.get("id") + "";
+		
 		List<Map<String, Object>> msgList = MS.selectmsg(SENDER);
-		return msgList; 
+		Map<String, List<Map<String, Object>>> returnMap = new HashMap<String, List<Map<String, Object>>>();
+		returnMap.put("list", msgList);
+		return returnMap; 
 	}
 	
-
-
+	@RequestMapping(value = "/msgDelete", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> msgDelete(
+			@RequestBody Map<String, Object> map) {
+		System.out.println(map);
+		MS.msgDelete(map);
+		
+		return map; 
+	}
+	
+	
+	
 
 //	@RequestMapping(value = "/msgList", method = RequestMethod.GET)
 //	public String msgSend(Model model, HttpSession session) {

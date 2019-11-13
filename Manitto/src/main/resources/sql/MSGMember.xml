@@ -10,11 +10,11 @@
 	</insert>
 	
 	<select id="msgList" parameterType="string" resultType="map">
-	select * from `message`
+	select m.*, DATE_FORMAT(m.SENDDATE, '%Y-%m-%d %H:%i:%s') as SENDDATE2 from `message` m where m.sender = #{value}
 	</select> 
 	
 	<delete id="msgDelete" parameterType="map">
-	delete from `message` where SENDER = #{SENDER}
+	delete from `message` where NUMBER = #{NUMBER}
 	</delete>
 	
 	
