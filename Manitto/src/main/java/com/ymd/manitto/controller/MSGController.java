@@ -43,7 +43,7 @@ public class MSGController {
 
 	@RequestMapping(value = "/SendMSG", method = RequestMethod.POST)
 	public String msg2(@RequestParam Map<String, Object> map) {
-		ss.insert("message.insertmsg", map);
+		ss.insert("message.msgInsert", map);
 		
 //		ss.selectList("message.msgList", SENDER);
 		
