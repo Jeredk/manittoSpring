@@ -26,18 +26,31 @@ public class MSGService {
 	
 
 	 public void msg(Map<String, Object>map) {
-			dao.msg(map);
+			dao.msgInsert(map);
 		}
 	 
 	 public List<Map<String, Object>> selectmsg(String SENDER) {
-		return dao.selectmsg(SENDER);
+		return dao.sendmsgList(SENDER);
 		
 	}
+	 public List<Map<String, Object>> selectmsg2(String RECEIVER) {
+			return dao.receivemsgList(RECEIVER);
+			
+		}
 	 
 	 public void msgDelete(Map<String,Object> map) {
 		 dao.msgDelete(map);
 	 }
 	 
+	 public void msgCheck(String id) {
+			dao.msgCheck(id);
+		}
+	 
+	 public int newmsgCount(String id) {
+			
+			int count = dao.newmsgCount(id);
+			return count;
+		}
 //	 public int checkCount(String id) {
 //			return dao.checkCount(id);
 //		}

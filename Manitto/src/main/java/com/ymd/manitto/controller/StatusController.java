@@ -23,17 +23,17 @@ public class StatusController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(StatusController.class);
 
-	@RequestMapping(value="/selectMyStatus",method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> selectMyStatus(@RequestBody Map<String, Object> map){
-		logger.debug("++++++++++++++++++++++++++++++++selectMyStatus++++++++++++++++++++++++++++++++");
-		logger.debug(map.toString());
-		logger.debug("++++++++++++++++++++++++++++++++selectMyStatus++++++++++++++++++++++++++++++++");	
-		statusService.statusSelect(map);
-		return map;
-	}
+//	@RequestMapping(value="/selectmystatus",method = RequestMethod.POST)
+//	@ResponseBody
+//	public Map<String, Object> selectMyStatus(@RequestBody Map<String, Object> map){
+//		logger.debug("++++++++++++++++++++++++++++++++selectMyStatus++++++++++++++++++++++++++++++++");
+//		logger.debug(map.toString());
+//		logger.debug("++++++++++++++++++++++++++++++++selectMyStatus++++++++++++++++++++++++++++++++");	
+//		statusService.statusSelect(map);
+//		return map;
+//	}
 	
-	@RequestMapping(value="/updateMyStatus", method = RequestMethod.POST)
+	@RequestMapping(value="/updatemystatus", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updateMyStatus(@RequestBody Map<String, Object> map){
 		logger.debug("++++++++++++++++++++++++++++++++updateMyStatus++++++++++++++++++++++++++++++++");
