@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,12 +35,24 @@ public class MSGController {
 //
 //		return "msg";
 //	}
-
+	private static final Logger logger = LoggerFactory.getLogger(MSGController.class);
 	@RequestMapping(value = "/SendMSG", method = RequestMethod.GET)
 	public String msg() {
 
 		return "SendMSG";
 
+	}
+	
+	@RequestMapping(value = "/SendMessage", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> message(@RequestBody Map<String, Object> map){
+		logger.debug("------------SendMessage------------");
+		logger.debug(map+"");
+		logger.debug("------------SendMessage------------");
+		MS.msg(map);
+		
+		
+		return map;
 	}
 
 	@RequestMapping(value = "/SendMSG", method = RequestMethod.POST)
@@ -66,8 +80,7 @@ public class MSGController {
 	@ResponseBody
 	public Map<String, List<Map<String, Object>>> msgList2(
 			@RequestBody Map<String, Object> map) {
-		System.out.println(map);
-		
+		System.out.println(map);	
 		String SENDER = (Integer) map.get("id") + "";
 		
 		MS.msgCheck(SENDER);
