@@ -90,6 +90,12 @@ public class MSGController {
 		MS.msgCheck(SENDER);
 		
 		List<Map<String, Object>> msgList = MS.selectmsg(SENDER);
+		for (int i = 0; i < msgList.size(); i++) {
+			String rec = String.valueOf(msgList.get(i).get("RECEIVER"));
+			String name = util.userSelectByKakao(rec).getNAME();
+			System.out.println(name+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+			msgList.get(i).put("NAME",name);
+		}
 		Map<String, List<Map<String, Object>>> returnMap = new HashMap<String, List<Map<String, Object>>>();
 		returnMap.put("list", msgList);
 		return returnMap; 
@@ -107,9 +113,10 @@ public class MSGController {
 		
 		List<Map<String, Object>> msgList = MS.selectmsg2(RECEIVER);
 		for (int i = 0; i < msgList.size(); i++) {
-			String rec = (String)msgList.get(i).get("RECEIVER");
+			String rec = String.valueOf(msgList.get(i).get("RECEIVER"));
 			String name = util.userSelectByKakao(rec).getNAME();
-			msgList.get(i).put("NAME",name);
+			System.out.println(name+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+			msgList.get(i).put("NAME","");
 		}
 		Map<String, List<Map<String, Object>>> returnMap = new HashMap<String, List<Map<String, Object>>>();
 		returnMap.put("list", msgList);
