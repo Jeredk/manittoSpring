@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysql.jdbc.StringUtils;
 import com.ymd.manitto.service.MSGService;
 
 
@@ -28,6 +29,9 @@ public class MSGController {
 	
 	@Autowired
 	SqlSessionTemplate ss;
+	
+	@Autowired
+	com.ymd.manitto.utils.StringUtils util;
 	
 
 //	@RequestMapping(value = "/msg", method = RequestMethod.GET)
@@ -76,7 +80,7 @@ public class MSGController {
 		return "msgList";
 	}
 	
-	@RequestMapping(value = "/msgList2", method = RequestMethod.POST)
+	@RequestMapping(value = "/msgList2", method = RequestMethod.POST) //수신
 	@ResponseBody
 	public Map<String, List<Map<String, Object>>> msgList2(
 			@RequestBody Map<String, Object> map) {
@@ -102,6 +106,11 @@ public class MSGController {
 		MS.msgCheck(RECEIVER);
 		
 		List<Map<String, Object>> msgList = MS.selectmsg2(RECEIVER);
+		for (int i = 0; i < msgList.size(); i++) {
+			String rec = (String)msgList.get(i).get("RECEIVER");
+			String name = util.userSelectByKakao(rec).getNAME();
+			msgList.get(i).put("NAME",name);
+		}
 		Map<String, List<Map<String, Object>>> returnMap = new HashMap<String, List<Map<String, Object>>>();
 		returnMap.put("list", msgList);
 		return returnMap; 
