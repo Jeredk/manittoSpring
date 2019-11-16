@@ -158,16 +158,31 @@ public class likeController {
 		return apersoninfo;
 	}
 	
+	@RequestMapping(value="/addBan", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> addBan(@RequestBody Map<String, Object> map){
+				
+		likeser.addBan(map);
+		
+		return map;
+	}
+	
+	@RequestMapping(value="/banList", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, List<String>> banList(@RequestBody Map<String, Object> map){
+				
+		String id = String.valueOf(map.get("id"));
+		List<String> list = likeser.banList(id);
+		
+		Map<String, List<String>> result = new HashMap<String, List<String>>();
+		
+		result.put("result", list);
+		
+		return result;
+	}
 	
 	
-//	@RequestMapping(value="/findMyFriends",method = RequestMethod.POST)
-//	@ResponseBody
-//	public Map<String, Object> findMyFriends(@RequestBody Map<String,Object> map){
-//		List<Map<String,Object>> list = likeser.findMyFriends(map);
-//		return map;
-//		
-//	}
-//	
+	
 	
 
 }

@@ -47,6 +47,14 @@ public class likeService {
 	public Map<String, Object> findafriend(Map<String, Object> map){
 		return likeD.findafriend(map);
 	}
+	
+	public void addBan(Map<String, Object> map){
+		 likeD.addBan(map);
+	}
+	
+	public List<String> banList(String id){
+		 return likeD.banList(id);
+	}
 
 
 	

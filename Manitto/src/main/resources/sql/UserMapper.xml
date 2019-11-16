@@ -62,6 +62,14 @@
 		 WHERE KAKAOCODE= #{id}
 	</select>
 	
+	<insert id="addBan" parameterType="map">
+	insert into `BANLIST`( DOBLOCK, GETBLOCK, BANDATE) 
+		VALUES (#{DOBLOCK},#{GETBLOCK} ,now());
+	</insert>
+	
+	<select id="banList" parameterType="stirng" resultType="stirng">
+	select GETBLOCK from `BANLIST` where DOBLOCK = #{id}
+	</select>
 	
 	
 

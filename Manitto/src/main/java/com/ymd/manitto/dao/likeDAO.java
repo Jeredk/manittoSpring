@@ -46,6 +46,15 @@ import org.springframework.stereotype.Repository;
 			return ss.selectOne("UserMapper.selectUser", map);
 		}
 		
+		public void addBan(Map<String, Object> map){
+			 ss.insert("UserMapper.addBan", map);
+		}
+		
+		public List<String> banList(String id){
+			return ss.selectList("UserMapper.banList", id);
+		}
+		
+		
 		
 	}
 
