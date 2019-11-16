@@ -80,7 +80,7 @@ public class MSGController {
 		return "msgList";
 	}
 	
-	@RequestMapping(value = "/msgList2", method = RequestMethod.POST) //수신
+	@RequestMapping(value = "/msgList2", method = RequestMethod.POST) // 
 	@ResponseBody
 	public Map<String, List<Map<String, Object>>> msgList2(
 			@RequestBody Map<String, Object> map) {
@@ -95,7 +95,7 @@ public class MSGController {
 		return returnMap; 
 	}
 	
-	@RequestMapping(value = "/msgList3", method = RequestMethod.POST)
+	@RequestMapping(value = "/msgList3", method = RequestMethod.POST) //
 	@ResponseBody
 	public Map<String, List<Map<String, Object>>> msgList3(
 			@RequestBody Map<String, Object> map) {
