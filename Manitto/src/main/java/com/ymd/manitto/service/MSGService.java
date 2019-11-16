@@ -51,6 +51,11 @@ public class MSGService {
 			int count = dao.newmsgCount(id);
 			return count;
 		}
+	 
+	 public boolean messageLimit(Map<String, Object> map) {
+		 return dao.messageLimit(map);
+		 
+	 }
 //	 public int checkCount(String id) {
 //			return dao.checkCount(id);
 //		}

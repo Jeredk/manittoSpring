@@ -62,5 +62,7 @@
 		 WHERE KAKAOCODE= #{id}
 	</select>
 	
+	
+	
 
 </mapper>

@@ -133,7 +133,17 @@ public class MSGController {
 		return map; 
 	}
 	
-	
+	@RequestMapping(value = "/messageLimit", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> messageLimit( 	 // JSON 으로 보내려고
+			@RequestBody Map<String, Object> map) {	// JSON 으로 받으려고
+
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		logger.debug("+++++++++++"+MS.messageLimit(map)+"++++++++++");
+		result.put("result", MS.messageLimit(map));
+		return result; 
+	}
 	
 
 //	@RequestMapping(value = "/msgList", method = RequestMethod.GET)

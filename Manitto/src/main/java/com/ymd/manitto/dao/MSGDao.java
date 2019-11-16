@@ -3,6 +3,8 @@ package com.ymd.manitto.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Message;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -40,7 +42,16 @@ public class MSGDao {
 		int count = list.size();
 		return count;
 	}
-
+	
+	public boolean messageLimit(Map<String, Object> map) {
+		Map<String, Object> messageLimit = ss.selectOne("message.messageLimit", map);
+		if(messageLimit == null) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 	
 	
 //	public void checkMsg(String id) {

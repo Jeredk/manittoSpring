@@ -33,6 +33,12 @@
 	where receiver = #{value} and checking = 0
 	</select>
 	
+	<select id="messageLimit"	parameterType="map" resultType="map">
+	SELECT * FROM message 
+	WHERE  SENDER = #{SENDER} and RECEIVER= #{RECEIVER} and DATE_FORMAT(senddate,'%Y-%m-%d') = DATE_FORMAT(now(), '%Y-%m-%d') 
+	ORDER BY senddate desc limit 1
+	</select>
+	
 	
 <!-- 	<select id="msgList" parameterType="map" resultType="map"> -->
 <!-- 	select * from `message` where sender = #{sender} -->
