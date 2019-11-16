@@ -53,6 +53,13 @@ public class MSGDao {
 		
 	}
 	
+	public void deleteReceiveMsg(int number) {
+		ss.update("message.deleteReceiveMsg", number);
+	}
+	
+	public void deleteSendMsg(int number) {
+		ss.update("message.deleteSendMsg", number);
+	}
 	
 //	public void checkMsg(String id) {
 //		ss.update("member.msgCheck",id);

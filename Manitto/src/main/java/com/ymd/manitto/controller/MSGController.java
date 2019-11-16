@@ -145,6 +145,22 @@ public class MSGController {
 		return result; 
 	}
 	
+	@RequestMapping(value = "/dReceiveMsg", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> deleteReceiveMsg( 	 // JSON 으로 보내려고
+			@RequestBody Map<String, Object> map) {	// JSON 으로 받으려고
+		MS.deleteReceiveMsg((Integer)map.get("NUMBER"));
+		return map; 
+	}
+	
+	@RequestMapping(value = "/deleteSendMsg", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> deleteSendMsg( 	 // JSON 으로 보내려고
+			@RequestBody Map<String, Object> map) {	// JSON 으로 받으려고
+		MS.deleteSendMsg((Integer)map.get("NUMBER"));
+		return map; 
+	}
+	
 
 //	@RequestMapping(value = "/msgList", method = RequestMethod.GET)
 //	public String msgSend(Model model, HttpSession session) {

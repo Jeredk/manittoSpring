@@ -56,6 +56,14 @@ public class MSGService {
 		 return dao.messageLimit(map);
 		 
 	 }
+	 
+	 public void deleteReceiveMsg(int number) {
+		 dao.deleteReceiveMsg(number);
+	 }
+	 
+	 public void deleteSendMsg(int number) {
+		 dao.deleteSendMsg(number);
+	 }
 //	 public int checkCount(String id) {
 //			return dao.checkCount(id);
 //		}

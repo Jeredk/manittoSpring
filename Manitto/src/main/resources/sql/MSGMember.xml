@@ -39,6 +39,17 @@
 	ORDER BY senddate desc limit 1
 	</select>
 	
+	<update id = "deleteReceiveMsg" parameterType="int">
+	update message set DELETEINFO = 1 
+	where number = #{value}
+	</update>
+	
+	<update id = "deleteSendMsg" parameterType="int">
+	update message set DELETEINFO = 2 
+	where number = #{value}
+	</update>
+	
+	
 	
 <!-- 	<select id="msgList" parameterType="map" resultType="map"> -->
 <!-- 	select * from `message` where sender = #{sender} -->
