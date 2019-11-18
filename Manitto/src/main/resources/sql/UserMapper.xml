@@ -67,8 +67,8 @@
 		VALUES (#{DOBLOCK},#{GETBLOCK} ,now());
 	</insert>
 	
-	<select id="banList" parameterType="stirng" resultType="stirng">
-	select GETBLOCK from `BANLIST` where DOBLOCK = #{id}
+	<select id="banList" parameterType="string" resultType="string">
+	select GETBLOCK from `BANLIST` where DOBLOCK = #{value}
 	</select>
 	
 	
