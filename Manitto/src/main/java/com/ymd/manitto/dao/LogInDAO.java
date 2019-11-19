@@ -18,5 +18,9 @@ public class LogInDAO {
 	public int signUpUser(Map<String,Object> map){
 		return ss.insert("logInMapper.signUp", map);
 	}
+	
+	public void profileUpdate(Map<String,Object> map) {
+		ss.update("logInMapper.profileUpdate",map);
+	}
 
 }

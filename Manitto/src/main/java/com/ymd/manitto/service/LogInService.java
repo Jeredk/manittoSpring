@@ -21,5 +21,9 @@ public class LogInService {
 	public int signUpUser(Map<String, Object> map) {
 		return logInDao.signUpUser(map);
 	}
+	
+	public void profileUpdate(Map<String, Object> map) {
+		 logInDao.profileUpdate(map);
+	}
 
 }

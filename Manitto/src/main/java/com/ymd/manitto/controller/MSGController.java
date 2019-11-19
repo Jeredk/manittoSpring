@@ -97,8 +97,10 @@ public class MSGController {
 		for (int i = 0; i < msgList.size(); i++) {
 			String rec = String.valueOf(msgList.get(i).get("RECEIVER"));
 			String name = util.userSelectByKakao(rec).getNAME();
+			String profile = util.userSelectByKakao(rec).getPROFILEIMG();
 			System.out.println(name+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 			msgList.get(i).put("NAME",name);
+			msgList.get(i).put("PROFILEIMG",profile);
 		}
 		Map<String, List<Map<String, Object>>> returnMap = new HashMap<String, List<Map<String, Object>>>();
 		returnMap.put("list", msgList);

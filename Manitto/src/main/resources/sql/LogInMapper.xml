@@ -25,5 +25,9 @@
 		 VALUES
 		 (#{KAKAOCODE},#{NAME},#{COLOR},#{FOOD},#{SINGER},#{MOVIEGENRE},#{INSTAGRAM},#{EMAIL},#{PROFILEIMG})
 	</insert>
+	
+	<update id="profileUpdate" parameterType="map">
+	update member set PROFILEIMG = #{PROFILEIMG} where KAKAOCODE = #{KAKAOCODE}
+	</update>
 
 </mapper>
