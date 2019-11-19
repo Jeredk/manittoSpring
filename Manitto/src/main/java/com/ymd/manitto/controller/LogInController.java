@@ -60,6 +60,12 @@ public class LogInController {
 		logger.debug(kakaoCodeAccount.toString());
 		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
 		
+		String profile = (String) map.get("PROFILEIMG");
+		if(profile == null) {
+			map.put("PROFILEIMG", "https://i.imgur.com/7UpVjMwb.jpg");
+		}
+		logInService.profileUpdate(map);
+		
 		Map<String, Object> result = logInService.selectUser(map);
 		if(result != null) {
 			map.put("result", "login");
