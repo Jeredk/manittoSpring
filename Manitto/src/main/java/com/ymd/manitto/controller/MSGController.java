@@ -101,6 +101,7 @@ public class MSGController {
 			System.out.println(name+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 			msgList.get(i).put("NAME",name);
 			msgList.get(i).put("PROFILEIMG",profile);
+			
 		}
 		Map<String, List<Map<String, Object>>> returnMap = new HashMap<String, List<Map<String, Object>>>();
 		returnMap.put("list", msgList);

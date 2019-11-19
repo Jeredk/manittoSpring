@@ -61,13 +61,14 @@ public class LogInController {
 		logger.debug("++++++++++++++++++++++++++++++++signCheck++++++++++++++++++++++++++++++++");
 		
 		String profile = (String) map.get("PROFILEIMG");
-		if(profile == null) {
+		if(profile == null|| profile.equals("")) {
 			map.put("PROFILEIMG", "https://i.imgur.com/7UpVjMwb.jpg");
 		}
+		System.out.println(profile+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 		logInService.profileUpdate(map);
 		
 		Map<String, Object> result = logInService.selectUser(map);
-		if(result != null) {
+		if(result != null ) {
 			map.put("result", "login");
 		} else {	
 			map.put("result", "needSignUp");
