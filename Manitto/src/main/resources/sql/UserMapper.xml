@@ -71,6 +71,6 @@
 	select GETBLOCK from `BANLIST` where DOBLOCK = #{value}
 	</select>
 	
-	
+		
 
 </mapper>

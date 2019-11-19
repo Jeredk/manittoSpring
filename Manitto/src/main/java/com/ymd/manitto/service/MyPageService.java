@@ -16,6 +16,9 @@ public class MyPageService {
 		myPageDao.updatemyinfo(map);
 	}
 	
+	 public void deleteAccount(Map<String, Object> map) {
+		 myPageDao.deleteAccount(map);
+	 }
 	
 
 }

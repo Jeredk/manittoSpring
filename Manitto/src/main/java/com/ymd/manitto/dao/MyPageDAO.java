@@ -16,5 +16,7 @@ public class MyPageDAO {
 		ss.update("MyPageMapper.updatemyinfo",map);
 		
 	}
-
+	public void deleteAccount(Map<String, Object> map) {
+		ss.delete("MyPageMapper.deleteAccount", map);
+	}
 }

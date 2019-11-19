@@ -8,7 +8,10 @@
 	update member set COLOR = #{COLOR}, FOOD = #{FOOD}, SINGER = #{SINGER}, MOVIEGENRE = #{MOVIEGENRE}, INSTAGRAM = #{INSTAGRAM} where KAKAOCODE = #{KAKAOCODE}
 	</update>
 	
-
+	<!-- 회원탈퇴 -->
+	<delete id="deleteAccount" parameterType="map">
+		delete from member where KAKAOCODE = #{KAKAOCODE}
+	</delete>
 	
 
 </mapper>

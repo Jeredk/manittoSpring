@@ -161,6 +161,7 @@ public class MSGController {
 		return map; 
 	}
 	
+	
 
 //	@RequestMapping(value = "/msgList", method = RequestMethod.GET)
 //	public String msgSend(Model model, HttpSession session) {

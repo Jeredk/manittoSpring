@@ -48,6 +48,7 @@
 	update message set DELETEINFO = 2 
 	where number = #{value}
 	</update>
+
 	
 	
 	

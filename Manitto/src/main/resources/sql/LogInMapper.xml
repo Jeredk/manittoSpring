@@ -4,12 +4,6 @@
 <mapper namespace="logInMapper">
 
 
-	<insert id="join" parameterType="map">
-		insert into `member` (userId, userName, userPw)
-		values
-		(#{userId},#{userName},#{userPw})
-	</insert>
-	
 	<select id="sel" resultType="int">
 	select count(*) from member
 	</select>
@@ -25,5 +19,7 @@
 		 VALUES
 		 (#{KAKAOCODE},#{NAME},#{COLOR},#{FOOD},#{SINGER},#{MOVIEGENRE},#{INSTAGRAM},#{EMAIL},#{PROFILEIMG})
 	</insert>
+	
+	
 
 </mapper>

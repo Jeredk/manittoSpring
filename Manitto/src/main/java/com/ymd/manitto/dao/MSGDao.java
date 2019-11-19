@@ -61,6 +61,8 @@ public class MSGDao {
 		ss.update("message.deleteSendMsg", number);
 	}
 	
+
+	
 //	public void checkMsg(String id) {
 //		ss.update("member.msgCheck",id);
 //	}?
