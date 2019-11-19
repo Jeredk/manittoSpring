@@ -27,7 +27,7 @@
 	</insert>
 	
 	<update id="profileUpdate" parameterType="map">
-	update member set PROFILEIMG = #{PROFILEIMG} where KAKAOCODE = #{KAKAOCODE}
+	update member set NAME=#{NAME}, PROFILEIMG = #{PROFILEIMG} where KAKAOCODE = #{KAKAOCODE}
 	</update>
 
 </mapper>
