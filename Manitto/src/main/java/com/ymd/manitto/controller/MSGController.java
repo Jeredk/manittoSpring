@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.jdbc.StringUtils;
 import com.ymd.manitto.service.MSGService;
+import com.ymd.manitto.service.likeService;
 
 
 
@@ -32,6 +33,9 @@ public class MSGController {
 	
 	@Autowired
 	com.ymd.manitto.utils.StringUtils util;
+	
+	@Autowired
+	likeService likeSer;
 	
 
 //	@RequestMapping(value = "/msg", method = RequestMethod.GET)
@@ -110,14 +114,33 @@ public class MSGController {
 		String RECEIVER = (Integer) map.get("id") + "";
 		
 		MS.msgCheck(RECEIVER);
-		
 		List<Map<String, Object>> msgList = MS.selectmsg2(RECEIVER);
+		logger.warn("msgList " + msgList.size());
 		for (int i = 0; i < msgList.size(); i++) {
 			String rec = String.valueOf(msgList.get(i).get("RECEIVER"));
 			String name = util.userSelectByKakao(rec).getNAME();
 			System.out.println(name+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 			msgList.get(i).put("NAME","");
 		}
+		
+		List<String> banList = likeSer.banList(RECEIVER);
+		
+		for (int i = msgList.size() - 1; i >= 0; i--) {
+			logger.warn("msgList get sender " + i + " - " + msgList.get(i).get("SENDER"));
+			String sender = (String)msgList.get(i).get("SENDER");
+			for (int j = 0; j < banList.size(); j++) {
+				logger.warn("banList get " + i + " - " + banList.get(j));
+				if (banList.get(j).equals(sender)) {
+					logger.warn("________________________________________");
+					logger.warn(banList.get(j));
+					logger.warn(sender);
+					logger.warn("________________________________________");
+					msgList.remove(i);
+				}
+			}
+			
+		}
+		
 		Map<String, List<Map<String, Object>>> returnMap = new HashMap<String, List<Map<String, Object>>>();
 		returnMap.put("list", msgList);
 		return returnMap; 
