@@ -189,6 +189,12 @@ public class GpsController {
 		logger.debug("++++++++++++++++++++++++++++++++++++SelectMyStatusNumberIntoGPSController+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		logger.debug(map+"");
 		Map<String, Object> stats = statusService.statusSelect(map);
+		
+		System.out.println("1@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println("1  -" + stats.toString());
+		System.out.println("11  -" + stats.get("STATUS").toString());
+		System.out.println("2@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
 		int stat = (int) stats.get("STATUS");
 		logger.debug(stat+"This is my Status");
 		logger.debug("++++++++++++++++++++++++++++++++++++SelectMyStatusNumberIntoGPSController+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");

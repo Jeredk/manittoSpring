@@ -9,8 +9,8 @@
 	</update>
 	
 	<!-- 회원탈퇴 -->
-	<delete id="deleteAccount" parameterType="map">
-		delete from member where KAKAOCODE = #{KAKAOCODE}
+	<delete id="deleteaccount" parameterType="map" >
+		delete from `member` where KAKAOCODE = #{KAKAOCODE}
 	</delete>
 	
 

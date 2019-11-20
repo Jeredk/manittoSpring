@@ -54,8 +54,7 @@ public class MyPageController {
 	
 	@RequestMapping(value = "/deleteAccount", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> deleteAccount( 	 // JSON 으로 보내려고
-			@RequestBody Map<String, Object> map) {	// JSON 으로 받으려고
+	public Map<String,Object> deleteAccount(@RequestBody Map<String, Object> map) {
 		logger.debug("-------------------------deleteAccount----------------------------");
 		logger.debug(map+"");
 		logger.debug("-------------------------deleteAccount----------------------------");
