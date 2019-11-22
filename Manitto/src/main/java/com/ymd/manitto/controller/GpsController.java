@@ -84,14 +84,14 @@ public class GpsController {
 		List<Gps> gpsList = new ArrayList<Gps>();
 		for (int i = 0; i < gpsser.onlineUser().size(); i++) {
 			Map<String, Object> user = userList.get(i);
-			if (id.equals(user.get("kakaocode"))) {
-				gps.setLat((double) user.get("lat"));
-				gps.setLng((double) user.get("lng"));
+			if (id.equals(user.get("KAKAOCODE"))) {
+				gps.setLat((double) user.get("LAT"));
+				gps.setLng((double) user.get("LNG"));
 			}else {
 				Gps gps2 = new Gps();
-				gps2.setId(String.valueOf(user.get("kakaocode")));
-				gps2.setLat((double) user.get("lat"));
-				gps2.setLng((double) user.get("lng"));
+				gps2.setId(String.valueOf(user.get("KAKAOCODE")));
+				gps2.setLat((double) user.get("LAT"));
+				gps2.setLng((double) user.get("LNG"));
 				gpsList.add(gps2);
 			}
 		}
@@ -159,9 +159,9 @@ public class GpsController {
 		for (int i = 0; i < userList.size(); i++) {
 			
 			Map<String, Object> user = userList.get(i);
-			if (id.equals(user.get("kakaocode"))) {
-				gps.setLat((double) user.get("lat"));
-				gps.setLng((double) user.get("lng"));
+			if (id.equals(user.get("KAKAOCODE"))) {
+				gps.setLat((double) user.get("LAT"));
+				gps.setLng((double) user.get("LNG"));
 			}
 		}
 		List<Gps> likeMeGpsList = new ArrayList<Gps>();
@@ -170,9 +170,9 @@ public class GpsController {
 			if(lmap != null) {
 				
 				Gps likeMeGps = new Gps();
-				likeMeGps.setId(String.valueOf(lmap.get("stalker")));
-				likeMeGps.setLat((double)(lmap.get("lat")));
-				likeMeGps.setLng((double)(lmap.get("lng")));
+				likeMeGps.setId(String.valueOf(lmap.get("STALKER")));
+				likeMeGps.setLat((double)(lmap.get("LAT")));
+				likeMeGps.setLng((double)(lmap.get("LNG")));
 				likeMeGpsList.add(likeMeGps);
 			}
 

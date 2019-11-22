@@ -5,7 +5,7 @@
 
 
 	<select id="sel" resultType="int">
-	select count(*) from member
+	select count(*) from MEMBER
 	</select>
 	
 	<select id="selectUser" parameterType="map" resultType="map">
@@ -23,7 +23,7 @@
 	
 	
 	<update id="profileUpdate" parameterType="map">
-	update member set NAME=#{NAME}, PROFILEIMG = #{PROFILEIMG} where KAKAOCODE = #{KAKAOCODE}
+	update MEMBER set NAME=#{NAME}, PROFILEIMG = #{PROFILEIMG} where KAKAOCODE = #{KAKAOCODE}
 	</update>
 
 </mapper>

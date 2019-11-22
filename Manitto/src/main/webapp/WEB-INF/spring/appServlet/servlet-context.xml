@@ -60,13 +60,13 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"></property> -->
 		<!-- <property name="url" value="jdbc:mysql://127.0.0.1:3306/nodedb"></property> -->
-		<property name="username" value="root"></property>
-		<property name="password" value="mysql"></property>
+		<property name="username" value="dhryu1992"></property>
+		<property name="password" value="youmanda123!"></property>
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
 
-		<property name="url"
-			value="jdbc:log4jdbc:mysql://192.168.0.58:3306/realmanitto" />
+<!-- 		<property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/dhryu1992" /> -->
+		<property name="url" value="jdbc:log4jdbc:mysql://dhryu1992.cafe24.com:3306/dhryu1992" />
 
 	</bean>
 	

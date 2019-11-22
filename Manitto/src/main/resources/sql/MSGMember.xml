@@ -5,48 +5,48 @@
 
 
 	<insert id="msgInsert" parameterType="map" >
-		insert into `message`( CONTENT, RECEIVER, SENDER) 
+		insert into `MESSAGE`( CONTENT, RECEIVER, SENDER) 
 		VALUES (#{CONTENT},#{RECEIVER} ,#{SENDER});
 	</insert>
 	
 	<select id="sendmsgList" parameterType="string" resultType="map">
-	select m.*, DATE_FORMAT(m.SENDDATE, '%Y-%m-%d %H:%i:%s') as SENDDATE2 from `message` m where m.sender = #{value}
+	select m.*, DATE_FORMAT(m.SENDDATE, '%Y-%m-%d %H:%i:%s') as SENDDATE2 from `MESSAGE` m where m.SENDER = #{value}
 	</select> 
 	
 	
 	<select id="receivemsgList" parameterType="string" resultType="map">
-	select m.*, DATE_FORMAT(m.SENDDATE, '%Y-%m-%d %H:%i:%s') as SENDDATE2 from `message` m where m.receiver = #{value}
+	select m.*, DATE_FORMAT(m.SENDDATE, '%Y-%m-%d %H:%i:%s') as SENDDATE2 from `MESSAGE` m where m.RECEIVER = #{value}
 	</select> 
 	
 	
 	<delete id="msgDelete" parameterType="map">
-	delete from `message` where NUMBER = #{NUMBER}
+	delete from `MESSAGE` where NUMBER = #{NUMBER}
 	</delete>
 	
 	<update id="msgCheck" parameterType="string">
-	update message set checking	= 1 
-	where receiver = #{value} and checking = 0
+	update MESSAGE set CHECKING	= 1 
+	where RECEIVER = #{value} and CHECKING = 0
 	</update>
 	
 	<select id="newmsgCount" parameterType="string" resultType="map">
-	select * from message 
-	where receiver = #{value} and checking = 0
+	select * from MESSAGE 
+	where RECEIVER = #{value} and CHECKING = 0
 	</select>
 	
 	<select id="messageLimit"	parameterType="map" resultType="map">
-	SELECT * FROM message 
-	WHERE  SENDER = #{SENDER} and RECEIVER= #{RECEIVER} and DATE_FORMAT(senddate,'%Y-%m-%d') = DATE_FORMAT(now(), '%Y-%m-%d') 
-	ORDER BY senddate desc limit 1
+	SELECT * FROM MESSAGE 
+	WHERE  SENDER = #{SENDER} and RECEIVER= #{RECEIVER} and DATE_FORMAT(SENDDATE,'%Y-%m-%d') = DATE_FORMAT(now(), '%Y-%m-%d') 
+	ORDER BY SENDDATE desc limit 1
 	</select>
 	
 	<update id = "deleteReceiveMsg" parameterType="int">
-	update message set DELETEINFO = 1 
-	where number = #{value}
+	update MESSAGE set DELETEINFO = 1 
+	where NUMBER = #{value}
 	</update>
 	
 	<update id = "deleteSendMsg" parameterType="int">
-	update message set DELETEINFO = 2 
-	where number = #{value}
+	update MESSAGE set DELETEINFO = 2 
+	where NUMBER = #{value}
 	</update>
 
 	

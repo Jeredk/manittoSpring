@@ -9,7 +9,7 @@ public class User {
 	private String MOVIEGENRE;
 	private String INSTAGRAM;
 	private String EMAIL;
-	private int STATUS;
+	private int    STATUS;
 	private String PROFILEIMG;
 	private String FCM;
 	public String getKAKAOCODE() {

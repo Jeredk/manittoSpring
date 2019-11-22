@@ -6,24 +6,24 @@
 	
 	
 	<insert id="gpsInsert" parameterType="map" >
-		insert into gps (kakaocode,lat,lng)
-		values(#{kakaocode}, #{lat}, #{lng})				 
+		INSERT INTO GPS (KAKAOCODE,LAT,LNG)
+		VALUES(#{kakaocode}, #{lat}, #{lng})				 
 	</insert>
 	
 	<select id="gpsDup" parameterType="string" resultType="map">
-		select kakaocode, lat, lng from gps where kakaocode = #{value}				 
+		select KAKAOCODE, LAT, LNG from GPS where KAKAOCODE = #{value}				 
 	</select>
 	
 	<update id="gpsUpdate" parameterType="map" >
-		update gps set lat=#{lat}, lng=#{lng} where kakaocode = #{kakaocode}			 
+		update GPS set LAT=#{lat}, LNG=#{lng} where KAKAOCODE = #{kakaocode}			 
 	</update>
 	
 	<select id="onLineUser" resultType="map">
-		select kakaocode, lat, lng from gps			 
+		select KAKAOCODE, LAT, LNG FROM GPS			 
 	</select>
 	
 	<delete id="deleteUser" parameterType="map">
-		delete from gps where kakaocode = #{id}		 
+		delete from GPS where KAKAOCODE = #{id}		 
 	</delete>
 	
 	

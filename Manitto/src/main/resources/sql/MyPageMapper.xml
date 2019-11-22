@@ -5,12 +5,12 @@
 
 
 	<update id="updatemyinfo" parameterType="map">
-	update member set COLOR = #{COLOR}, FOOD = #{FOOD}, SINGER = #{SINGER}, MOVIEGENRE = #{MOVIEGENRE}, INSTAGRAM = #{INSTAGRAM} where KAKAOCODE = #{KAKAOCODE}
+	update MEMBER set COLOR = #{COLOR}, FOOD = #{FOOD}, SINGER = #{SINGER}, MOVIEGENRE = #{MOVIEGENRE}, INSTAGRAM = #{INSTAGRAM} where KAKAOCODE = #{KAKAOCODE}
 	</update>
 	
 	<!-- 회원탈퇴 -->
 	<delete id="deleteaccount" parameterType="map" >
-		delete from `member` where KAKAOCODE = #{KAKAOCODE}
+		delete from `MEMBER` where KAKAOCODE = #{KAKAOCODE}
 	</delete>
 	
 

@@ -120,7 +120,7 @@ public class likeController {
 		List<User> userList = new ArrayList<User>();
 		Map<String, Object> json = new HashMap<String, Object>();
 		for (int i = 0; i < list.size(); i++) {
-			String targetId=(String) list.get(i).get("target");
+			String targetId=(String) list.get(i).get("TARGET");
 			User user = utils.userSelectByKakao(targetId);
 			
 			userList.add(user);	

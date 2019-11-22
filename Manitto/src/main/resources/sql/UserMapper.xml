@@ -2,15 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserMapper">
+	<resultMap type="com.ymd.manitto.User" id="UserMap">
+		<result property="KAKAOCODE" column="KAKAOCODE" />
+		<result property="NAME" column="NAME" />
+		<result property="COLOR" column="COLOR" />
+		<result property="FOOD" column="FOOD" />
+		<result property="SINGER" column="SINGER" />
+		<result property="MOVIEGENRE" column="MOVIEGENRE" />
+		<result property="INSTAGRAM" column="INSTAGRAM" />
+		<result property="EMAIL" column="EMAIL" />
+		<result property="STATUS" column="STATUS" />
+		<result property="PROFILEIMG" column="PROFILEIMG" />
+		<result property="FCM" column="FCM" />
+	</resultMap>
 
-	<select id="userSelectByKakao" parameterType="string" resultType="com.ymd.manitto.User">
+
+	<select id="userSelectByKakao" parameterType="string" resultMap="UserMap">
 		SELECT KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG,FCM
 		 FROM MEMBER
 		 WHERE KAKAOCODE = #{value}
 	</select>
 	
 	<insert id="likeyou" parameterType="map" >
-		insert into likeme (target,stalker,checkdate)
+		insert into LIKEME (TARGET,STALKER,CHECKDATE)
 		values(#{TARGET}, #{STALKER}, NOW())
 				 
 	</insert>
@@ -21,27 +35,27 @@
 		
 	</select>
 	<select id="loveSight" parameterType="string" resultType="map">
-	select target,checkdate
-	from likeme
-	where stalker = #{value}
+	select TARGET,CHECKDATE
+	FROM LIKEME
+	where STALKER = #{value}
 	</select>
 	
 	<select id="findMyFriends" parameterType="map" resultType="map">
 		select KAKAOCODE,NAME,COLOR,FOOD,SINGER,MOVIEGENRE,INSTAGRAM,EMAIL,STATUS,PROFILEIMG
 		 from MEMBER
-		  WHERE KAKAOCODE in (select TARGET from `likeme` where STALKER = #{KAKAOCODE})
+		  WHERE KAKAOCODE in (select TARGET from `LIKEME` where STALKER = #{KAKAOCODE})
 	</select>
 	
 
 	<delete id="noMoreManitto" parameterType="map">
-		DELETE FROM likeme WHERE TARGET=#{TARGET} AND STALKER=#{STALKER}
+		DELETE FROM LIKEME WHERE TARGET=#{TARGET} AND STALKER=#{STALKER}
 	</delete>
 	
 
 	<select id="totalLikeMe" parameterType="string" resultType="string">
 	select stalker
-	from likeme
-	where target = #{value}
+	from LIKEME
+	where TARGET = #{value}
 	</select>
 	
 	<select id="selectUser" parameterType="map" resultType="map">
@@ -53,7 +67,7 @@
 	
 	
 	<update id="updateFcm" parameterType="map">
-	update member set FCM = #{Token} where KAKAOCODE = #{id}
+	update MEMBER set FCM = #{Token} where KAKAOCODE = #{id}
 	</update>
 	
 	<select id="selectFcm" parameterType="map" resultType="map">
