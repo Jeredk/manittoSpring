@@ -9,8 +9,7 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
-<button type="button" onclick="location.href='SendMSG' ">쪽지보내기</button>
+<P>  The time on the server is ${getIndex}. </P>
 
 </body>
 </html>
